@@ -1,0 +1,1278 @@
+{
+  "dicionario": {
+    "examinar": [
+      "olhar",
+      "vasculhar",
+      "procurar",
+      "inspecionar",
+      "examinar",
+      "ver",
+      "analisar"
+    ],
+    "pegar": ["pegar", "coletar", "obter", "levar", "roubar", "agarrar"],
+    "usar": ["usar", "utilizar", "dar", "entregar"],
+    "ir": ["ir", "entrar", "caminhar", "andar"],
+    "sair": ["sair", "voltar", "vazar"],
+    "consumir": ["consumir", "devorar", "matar", "atacar", "morder"]
+  },
+  "erros": {
+    "item_nao_encontrado": "Você não vê esse item ao seu redor.",
+    "item_ja_coletado": "Você já possui esse item consigo.",
+    "item_nao_possuido": "Você não possui esse item consigo.",
+    "local_errado": "Você não vê como esse item pode ajudar no momento.",
+    "comando_invalido": "Comando inválido. Digite [Ajuda].",
+    "alvo_inexistente": "Você tenta procurar por isso, mas não encontra nada parecido."
+  },
+  "textosSistema": {
+    "textosIniciais": [
+      "Inicializando ▮▮▮▮▮▮...",
+      "Sistema circulatório... OK.",
+      "Sistemas Sensoriais... OK.",
+      "Sistema Cognitivo... OK.",
+      "Cenário KETER... ERRO CRITICO.",
+      "O cenário não está completo, digite [COMEÇAR] para iniciar o reparo manual."
+    ],
+    "carregandoCenario": [
+      "Carregando cenário KETER... OK.",
+      "Inicializando Simulação... OK.",
+      "Pontos de interesse serão [marcados] da forma demonstrada. Digite [AJUDA] para ver toda a lista de comandos."
+    ]
+  },
+  "eventos": {
+    "pessoa_satisfeita": {
+      "texto": [
+        "'Você é uma pessoa gentil, eu agradeço por tudo', ela comenta antes que você possa sair. 'Espero lhe ver de novamente outro dia', ela acena, já levemente bêbada, antes de deitar a cabeça no poste e cai no sono",
+        "...Você sorri sem saber se isso é por se sentir como se tivesse feito algo bom ou pelo fato que agora, ela é uma presa extremamente fácil."
+      ]
+    },
+    "puzzle_cemiterio": {
+      "texto": [
+        "No momento em que você termina de ler esta lápide, um arrepio sobe pela sua nuca.",
+        "A terra do túmulo no qual você pisa reage, você pula para o lado antes de algo aconteça.",
+        "...Um [símbolo] começa a aparecer sobre o chão desse túmulo."
+      ],
+      "removeItem": "papelCemiterio"
+    },
+    "puzzle_corpo": {
+      "texto": [
+        "...Você nota a mão do cadáver começando a se mover no momento em que você insere a agulha, as marcas pretas da pele deslizando até a palma.",
+        "O [símbolo] começa a aparecer lentamente na mão, formado por essas marcas. Assim que ele está completo, o corpo volta a ficar inerte."
+      ],
+      "descobre": "simbolo2",
+      "removeItem": ["caderno", "certificado"]
+    },
+    "puzzle_igreja": {
+      "texto": ["[Alterar dps, altar se abre e revela [simbolo]]"],
+      "removeItem": "papelIgreja"
+    },
+    "finalJogo": {
+      "texto": [
+        "Você finalmente reuniu os três símbolos.",
+        "Você tem tudo o que prometeu. Agora, você precisa ir até a [casa]."
+      ],
+      "descobre": "fimDeJogo"
+    }
+  },
+  "interacoesGlobais": {
+    "ajuda": {
+      "nome": "ajuda",
+      "aliases": ["help", "comandos", "regras"],
+      "examinar": {
+        "descricao": [
+          "AJUDA:",
+          "- [OLHAR]: Descreve o ambiente em mais detalhes, pode ser utilizado como [OLHAR] + [ALVO] para detalhar um objeto ou pessoa melhor ou [OLHAR] + [SI MESMO] para ver seu estado atual.",
+          "- [IR] + [LOCAL]: Move você para  outro local ou um ponto de interesse específico na sala.",
+          "- [SAIR]: Retorna ao local anterior.",
+          "- [PEGAR] + [ITEM]: Pega um item disponível no cenário e adiciona ao seu inventário.",
+          "- [USAR] + [ITEM]: Utiliza um item do seu inventário no ambiente ou o entrega a alguém, algumas vezes você precisará especificar o [ALVO] dessa ação.",
+          "- [CONSUMIR] + [ALVO]: Drena a vida de uma vítima vulnerável. Cuidado para não chamar atenção.",
+          "> Dica: Seja direto. Experimente comandos curtos como 'olhar mesa', 'pegar chave' ou apenas 'voltar'."
+        ]
+      }
+    },
+    "si mesmo": {
+      "nome": "si mesmo",
+      "aliases": ["mim", "seu corpo", "você", "mim mesmo"],
+      "examinar": {
+        "descricao": [
+          {
+            "requerVariavel": { "mortos": 0 },
+            "texto": "Você se olha. Faz dias que você não devora nada. Sequer uma gota de sangue entrou em seu sistema desde o dia em que você fugiu. Você está em um péssimo estado."
+          },
+          {
+            "requerVariavel": { "mortos": 1 },
+            "texto": "Você se olha. O sabor do sangue quase faz você perder o controle, mas você precisa se manter calmo. Só mais um pouco."
+          },
+          {
+            "requerVariavel": { "mortos": 2 },
+            "texto": "Você se olha. Seu corpo começa a responder melhor, e as feridas antigas parecem menos dolorosas, mas ainda não passam de uma fagulha da sua força."
+          },
+          {
+            "requerVariavel": { "mortos": 3 },
+            "texto": "Você se olha. A fraqueza extrema já passou. Você consegue sentir um pouco de força retornando às suas mãos."
+          },
+          {
+            "requerVariavel": { "mortos": 4 },
+            "texto": "Você se olha. Ainda dói se mover, mas você conseguiria se defender caso necessário."
+          },
+          {
+            "requerVariavel": { "mortos": 5 },
+            "texto": "Você se olha. Mais um pouco de sangue e você voltará ao estado em que estava anteriormente."
+          },
+          {
+            "requerVariavel": { "mortos": { "min": 6 } },
+            "texto": "Você se olha. Você está começando a se reconhecer. É você mesmo, não é?"
+          }
+        ]
+      }
+    }
+  },
+  "cenarios": {
+    "cabana": {
+      "descricao": [
+        "Você acorda e se encontra em uma cabana escura. O cheiro de mofo e sujeira se torna insuportável no momento que você respira.",
+        "Você se lembra de que dia é hoje. Há algo importante para fazer. Ao se levantar, um senso de urgência aperta sua garganta.",
+        "Você precisa ir para a cidade."
+      ],
+      "descricaoDetalhada": "Você olha ao seu redor. Há uma [porta] de ferro pesada, algumas [janelas] tampadas com jornais velhos e [gavetas] de madeira apodrecidas.",
+      "interacoes": {
+        "gavetas": {
+          "nome": "gavetas",
+          "aliases": ["gaveta", "gavetas"],
+          "examinar": {
+            "descricao": "Com um rangido, você opens as gavetas e encontra uma [chave] velha e enferrujada no fundo.",
+            "descobre": "chaveCabana",
+            "repetida": "Você vasculha as gavetas novamente, mas só restam poeira e mofo."
+          }
+        },
+        "porta": {
+          "nome": "porta de ferro",
+          "aliases": ["porta", "porta de ferro", "saída", "saida"],
+          "examinar": {
+            "descricao": "Uma porta de ferro grande e resistente, surpreendentemente em ótimo estado. Ela se destaca do resto da cabana abandonada. Infelizmente para você, ela está trancada."
+          },
+          "usar": {
+            "itemId": "chaveCabana",
+            "requerLocal": "cabana",
+            "removeItem": "chaveCabana",
+            "resposta": [
+              "A chave encaixa com dificuldade. A porta pesada cede lentamente, revelando o exterior.",
+              "Você sai da cabana, para nunca mais voltar."
+            ],
+            "proximoEstado": "cidade"
+          }
+        },
+        "janelas": {
+          "nome": "janelas",
+          "aliases": ["janela", "janelas"],
+          "examinar": {
+            "descricao": "Cada janela está coberta de jornais antigos e manchados, impedindo qualquer um de ver o outro lado."
+          }
+        },
+        "chave": {
+          "nome": "chave antiga",
+          "aliases": [
+            "chave",
+            "chave velha",
+            "chave antiga",
+            "chave enferrujada"
+          ],
+          "visivelSeDescoberta": "chaveCabana",
+          "pegar": {
+            "itemId": "chaveCabana",
+            "requerDescoberta": "chaveCabana",
+            "resposta": "Você pega a chave antiga."
+          }
+        }
+      }
+    },
+    "cidade": {
+      "descricao": [
+        "A cidade está quase vazia, banhada por uma lua carmesim no alto do céu. Já é tarde da noite.",
+        "Você vê à distância alguns locais que chamam sua atenção: Um [Beco], um [Bar] ainda aberto, um [Cemitério], um [Açougue] fechado e uma [Igreja].",
+        "Você consegue ver a [Casa] à distância... Mas, como prometido, você só deve ir até lá após conseguir tudo necessário para cumprir a sua parte.",
+        "Três símbolos. É tudo de que você precisa.",
+        "É bom se apressar, eles já devem ter notado que você sumiu."
+      ],
+      "descricaoDetalhada": "Um [Beco], um [Bar] ainda aberto, um [Cemitério], um [Açougue] fechado, uma [Igreja] e uma [Torre do Relógio] é tudo o que há de interessante por aqui.",
+      "descricaoRetorno": "A lua ainda está no topo do céu.",
+      "interacoes": {
+        "casa": {
+          "nome": "Casa",
+          "aliases": ["casa"],
+          "ir": {
+            "requerDescoberta": "fimDeJogo",
+            "falha": "Você ainda não tem os símbolos necessários, há uma promessa para cumprir.",
+            "proximoEstado": "casa"
+          }
+        },
+        "beco": {
+          "nome": "Beco",
+          "aliases": ["beco"],
+          "ir": { "proximoEstado": "beco" }
+        },
+        "cemiterio": {
+          "nome": "Cemitério",
+          "aliases": ["cemiterio", "cemitério"],
+          "ir": {
+            "proximoEstado": "cemiterio"
+          }
+        },
+        "acougue": {
+          "nome": "Açougue",
+          "aliases": ["acougue", "açougue"],
+          "ir": {
+            "resposta": "Você caminha até o açougue...",
+            "proximoEstado": "acougue"
+          }
+        },
+        "bar": {
+          "nome": "Bar",
+          "aliases": ["bar"],
+          "ir": {
+            "resposta": "Você caminha até o bar...",
+            "proximoEstado": "bar"
+          }
+        },
+        "igreja": {
+          "nome": "Igreja",
+          "aliases": ["igreja"],
+          "ir": {
+            "resposta": "Você caminha até a igreja...",
+            "proximoEstado": "igrejaEx"
+          }
+        }
+      }
+    },
+    "beco": {
+      "descricao": "Você caminha até o beco, completamente escuro e negligenciado. Há lixo infestado de insetos por toda a parte.",
+      "descricaoRetorno": "Você volta ao beco, ele continua tão imundo quanto a última vez.",
+      "descricaoDetalhada": [
+        {
+          "requerVariavel": { "estadoPessoaBeco": 0 },
+          "texto": "Você olha ao seu redor. Uma [pessoa] sentada no canto do beco nota sua presença e lhe chama para se aproximar. Há também alguns [cartazes] de desaparecido colados sobre as paredes e uma caixa de [ferramentas] jogada no canto."
+        },
+        {
+          "requerVariavel": { "estadoPessoaBeco": 1 },
+          "texto": "Você olha ao seu redor. Aquela [pessoa] sentada no canto do beco continua a dormir apoiada no poste. Há também alguns [cartazes] de desaparecido colados sobre as paredes e uma caixa de [ferramentas] jogada no canto."
+        },
+        {
+          "requerVariavel": { "estadoPessoaBeco": 2 },
+          "texto": "Você olha ao seu redor. O corpo da [pessoa] continua na mesma posição, apoiado ao banco. Há também alguns [cartazes] de desaparecido colados sobre as paredes e uma [caixa de ferramentas] jogada no canto."
+        }
+      ],
+      "interacoes": {
+        "ferramentas": {
+          "nome": "caixa de ferramentas",
+          "aliases": ["ferramentas", "caixa"],
+          "examinar": {
+            "descricao": "Você abre a caixa... Apenas para se decepcionar com as ferramentas em péssimo estado, a única ferramenta que poderia ser utilizável é uma [chave de fenda].",
+            "descobre": "chaveFenda",
+            "repetida": "Você olha a caixa novamente. A chave de fenda era a única ferramenta utilizável disponível ali."
+          }
+        },
+        "Cartazes": {
+          "nome": "cartazes",
+          "aliases": ["cartazes", "cartaz", "cartazes de desaparecido"],
+          "examinar": {
+            "descricao": "São vários cartazes de desaparecido de multiplas pessoas... Huh. Uma de suas vitimas de meses atrás está aqui."
+          }
+        },
+        "chave de fenda": {
+          "nome": "chave de fenda",
+          "aliases": ["chave"],
+          "visivelSeDescoberta": "chaveFenda",
+          "examinar": {
+            "descricao": "Uma chave de fenda."
+          },
+          "pegar": {
+            "itemId": "chaveFenda",
+            "requerDescoberta": "chaveFenda",
+            "resposta": "Você pega a chave de fenda. Imediatamente você 'limpa' ela com a neve, estava oleosa demais."
+          }
+        },
+        "pessoa": {
+          "nome": "pessoa",
+          "aliases": ["mulher", "mendiga"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "estadoPessoaBeco": 0 },
+                "texto": [
+                  "Ela não parece estar em um bom estado, suas mãos tremem enquanto ela tenta se aquecer, ela olha para ti em suplica, lhe chamando para mais perto.",
+                  "Talvez, se ela estivesse inconsciente, seria uma ótima fonte de sangue."
+                ]
+              },
+              {
+                "requerVariavel": { "estadoPessoaBeco": 1 },
+                "texto": "A pessoa continua a dormir encostada no poste."
+              },
+              {
+                "requerVariavel": { "estadoPessoaBeco": 2 },
+                "texto": "O corpo repousa drenado e sem vida no chão do beco."
+              }
+            ]
+          },
+          "ir": {
+            "resposta": [
+              {
+                "requerVariavel": { "estadoPessoaBeco": 0 },
+                "texto": "Você mal se aproxima e ela imediatamente agradece pela sua atenção, 'por favor, um [cigarro] e uma [bebida]', ela implora, 'farei valer a pena', ela completa."
+              },
+              {
+                "requerVariavel": { "estadoPessoaBeco": 1 },
+                "texto": "Você se aproxima da pessoa, ela ainda está dormindo enquanto segura sua garrafa e cigarro em suas mãos. Você decide não perturbar."
+              },
+              {
+                "requerVariavel": { "estadoPessoaBeco": 2 },
+                "texto": "Não há motivos para se aproximar de um corpo."
+              }
+            ]
+          },
+          "usar": [
+            {
+              "itemId": "vodka",
+              "removeItem": "vodka",
+              "resposta": [
+                "Você entrega a garrafa de vodka para ela, sem nem responder, ela abre e dá um golão.",
+                "Ela parece muito feliz, 'Isso vai fazer minha noite' ela comenta.",
+                "Você pergunta o que você vai ganhar em troca, ela dá mais um gole e deixa a garrafa de lado. 'O açougue é uma fronte, um bando de cultista maluco fica lá' ela responde, 'Eu quase parei lá uma vez, eu consegui fugir', ela complementa",
+                "Você cruza os braços enquanto escuta, 'Eles devem estar todos em casa, se você entrar, lá com certeza deve achar coisas caras, a entrada é um alçapão secreto no balcão', você acena e agradece as informações."
+              ],
+              "descobre": ["entregouVodka", "descobriuFachada"]
+            },
+            {
+              "itemId": "cigarro",
+              "removeItem": "cigarro",
+              "resposta": "Você entrega o cigarro para ela, ela agradece profundamente e acende com o cigarro dela. 'Esse cigarro é CARRÍSSIMO! Onde você conseguiu isso?', ela questiona, mas nem se importa de ouvir sua resposta, ela puxa do bolso um isqueiro enfeitado, 'Leve isso, deve ser o suficiente para compensar sua gentileza' ela afirma, você acena e pega o isqueiro.",
+              "ganhaItem": "isqueiro",
+              "descobre": "entregouCigarro"
+            }
+          ],
+          "consumir": {
+            "requerVariavel": { "estadoPessoaBeco": 1 },
+            "resposta": "[LEMBRAR DE ALTERAR DPS] nephelim",
+            "falha": [
+              {
+                "requerVariavel": { "estadoPessoaBeco": 0 },
+                "texto": "Seria um enorme problema caso ela gritasse e você fosse pego, melhor esperar para quando ela esteja vulnerável."
+              },
+              {
+                "requerVariavel": { "estadoPessoaBeco": 2 },
+                "texto": "Não há mais sangue ou vida restando aqui. Você já drenou este corpo completamente."
+              }
+            ],
+            "setVariavel": { "estadoPessoaBeco": 2 },
+            "addVariavel": { "mortos": 1 }
+          }
+        }
+      }
+    },
+    "cemiterio": {
+      "nome": "Cemitério",
+      "descricao": [
+        "Você caminha até o cemitério. A neblina, já presente na cidade, se intensifica neste local. Sendo o único cemitério em quilômetros de distância, é aqui que todos os mortos são enterrados ou cremados.",
+        "Você não precisa olhar muito para saber que não está sozinho."
+      ],
+      "descricaoDetalhada": "Você olha ao seu redor. Logo na entrada, nota uma [porta] entreaberta que leva a um escritório escuro. Todas as outras portas parecem estar trancadas. Há também nove [túmulos], formando um quadrado, vigiados por um [lobisomem], além de um conjunto de nove [rosas] em um jarro apoiado sobre algum tipo de [memorial]. As [rosas], por algum motivo, estão completamente brancas.",
+      "descricaoRetorno": "Você volta ao cemitério. A neblina continua a dificultar sua travessia.",
+      "interacoes": {
+        "porta": {
+          "nome": "porta",
+          "aliases": ["porta", "escritório", "escritorio"],
+          "examinar": {
+            "descricao": "A entrada é apenas uma porta comum branca como as outras. A única diferença é que esta está entreaberta. Está escuro demais para enxergar de fora, você precisaria entrar para observar o interior."
+          },
+          "ir": {
+            "proximoEstado": "escritorio"
+          }
+        },
+        "rosas": {
+          "nome": "rosas",
+          "aliases": ["rosa", "memorial"],
+          "examinar": {
+            "descricao": ["...Hm"]
+          },
+          "ir": {
+            "resposta": "[ALTERAR DPS, INCOMPLETO]"
+          }
+        },
+        "lobisomem": {
+          "nome": "lobisomem",
+          "aliases": ["lobo", "monstro", "fera"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "estadoLobisomem": 0 },
+                "texto": [
+                  "O lobisomem é enorme e não parece gostar nem um pouco da sua presença, mas não deve atacar caso você não se aproxime primeiro.",
+                  "Talvez haja uma forma de distraí-lo. Talvez seja possível devorá-lo se a fera lhe desse as costas."
+                ]
+              },
+              {
+                "requerVariavel": { "estadoLobisomem": 1 },
+                "texto": "O lobisomem está deitado no chão, ainda a dormir."
+              },
+              {
+                "requerVariavel": { "estadoLobisomem": 2 },
+                "texto": "O corpo seco e sem vida do lobisomem jaz no chão do cemitério."
+              }
+            ]
+          },
+          "usar": {
+            "itemId": "carne",
+            "removeItem": "carne",
+            "resposta": [
+              "Você joga o pedaço de carne em direção ao lobisomem, ele a devora em uma única mordida.",
+              "Você se prepara para alguma reação, mas ele apenas o encara... Então simplesmente se deita no chão para dormir.",
+              "Completamente indefeso."
+            ],
+            "setVariavel": { "estadoLobisomem": 1 }
+          },
+          "consumir": {
+            "requerVariavel": { "estadoLobisomem": 1, "mortos": { "min": 4 } },
+            "resposta": "[ALTERAR DEPOIS] vc consome lobisomem.",
+            "falha": [
+              {
+                "requerVariavel": { "estadoLobisomem": 0 },
+                "texto": "Seria uma péssima ideia atacar um lobisomem enquanto ele está acordado e o encarando."
+              },
+              {
+                "requerVariavel": { "estadoLobisomem": 1 },
+                "texto": "Mesmo com o lobisomem desacordado, você ainda se sente inseguro em atacá-lo agora. Talvez se você estivesse um pouco mais forte...?"
+              },
+              {
+                "requerVariavel": { "estadoLobisomem": 2 },
+                "texto": "Você já fez isso. O corpo está seco e frio."
+              }
+            ],
+            "setVariavel": { "estadoLobisomem": 2 },
+            "addVariavel": { "mortos": 1 }
+          }
+        },
+        "tumulos": {
+          "nome": "túmulos",
+          "aliases": ["tumulo", "tumulos", "túmulo", "quadrado"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "São nove túmulos formando um quadrado. O primeiro fica no canto superior esquerdo e o nono, no canto inferior direito. (Use o comando [Olhar túmulo 1-9] para examinar um em específico.)"
+          }
+        },
+        "tumulo 1": {
+          "nome": "túmulo 1",
+          "aliases": ["tumulo 1", "túmulo 1"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Yuri Samuel Campos de Lima, 1984-2009'",
+            "pushVariavel": { "puzzleTumulos": 1 }
+          }
+        },
+        "tumulo 2": {
+          "nome": "túmulo 2",
+          "aliases": ["tumulo 2", "túmulo 2"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Kleit Ogaanrd, 1988-2007'",
+            "pushVariavel": { "puzzleTumulos": 2 }
+          }
+        },
+        "tumulo 3": {
+          "nome": "túmulo 3",
+          "aliases": ["tumulo 3", "túmulo 3"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Camilla Jones, 1979-2008'",
+            "pushVariavel": { "puzzleTumulos": 3 }
+          }
+        },
+        "tumulo 4": {
+          "nome": "túmulo 4",
+          "aliases": ["tumulo 4", "túmulo 4"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Carmen de Albuquerque, 1979-2008'",
+            "pushVariavel": { "puzzleTumulos": 4 }
+          }
+        },
+        "tumulo 5": {
+          "nome": "túmulo 5",
+          "aliases": ["tumulo 5", "túmulo 5"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Ramon Caetano Dias 1969-2008'",
+            "pushVariavel": { "puzzleTumulos": 5 }
+          }
+        },
+        "tumulo 6": {
+          "nome": "túmulo 6",
+          "aliases": ["tumulo 6", "túmulo 6"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Marcelo Rocha 1965-2008'",
+            "pushVariavel": { "puzzleTumulos": 6 }
+          }
+        },
+        "tumulo 7": {
+          "nome": "túmulo 7",
+          "aliases": ["tumulo 7", "túmulo 7"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Enzo Gabriel de Sousa 1986-2008'",
+            "pushVariavel": { "puzzleTumulos": 7 }
+          }
+        },
+        "tumulo 8": {
+          "nome": "túmulo 8",
+          "aliases": ["tumulo 8", "túmulo 8"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Ronaldo Kataguri 1958-2008'",
+            "pushVariavel": { "puzzleTumulos": 8 }
+          }
+        },
+        "tumulo 9": {
+          "nome": "túmulo 9",
+          "aliases": ["tumulo 9", "túmulo 9"],
+          "examinar": {
+            "requerVariavel": { "estadoLobisomem": { "min": 1 } },
+            "falha": "O lobisomem rosna ferozmente e bloqueia o caminho. É impossível se aproximar dos túmulos enquanto ele estiver acordado.",
+            "descricao": "'Trucy MccAnzy, 1980-2008'",
+            "pushVariavel": { "puzzleTumulos": 9 }
+          }
+        },
+        "simbolo": {
+          "nome": "símbolo",
+          "aliases": ["simbolo", "símbolo"],
+          "visivelSeDescoberta": "simboloCemiterio",
+          "examinar": {
+            "descricao": "É um dos três que você prometeu."
+          },
+          "pegar": {
+            "itemId": "simbolo1",
+            "requerDescoberta": "simboloCemiterio",
+            "resposta": [
+              "Você estica a mão para tentar pegar o símbolo, mesmo sendo apenas marcas desenhadas sobre a terra.",
+              "Seus dedos chegam perto, mas algo impede que você avance. Uma outra mão emerge do solo, também enfaixada, mas apodrecida.",
+              "Você a reconhece, é a sua própria mão em decomposição.",
+              "Você quase abre a boca para dizer algo, mas o membro pálido volta a se mover, arrancando o pedaço de terra onde o símbolo repousa.",
+              "Os dedos mortos apertam e amassam a sujeira, até que um selo sólido se materializa ali. A mão se abre, oferecendo-o a você.",
+              "Você pega o símbolo e a mão desaparece, deixando apenas sangue seco em seu lugar."
+            ]
+          }
+        }
+      }
+    },
+    "escritorio": {
+      "nome": "escritório",
+      "descricao": [
+        "Você abre a porta e se depara com um escritório comum e escuro, exatamente como você imaginou que seria.",
+        "Você escuta o som de uma respiração preenchendo a sala, que é mobiliada com algumas cadeiras, [armários] e móveis simples."
+      ],
+      "descricaoDetalhada": [
+        "Você olha ao seu redor. É um escritório comum, repleto de [armários] e com uma [mesa], uma...",
+        "...Uma [garota] está dormindo na cadeira. Pelas roupas, ela parece trabalhar aqui, seus braços cobrem a [mesa] e tudo o que há nela.",
+        "O sono dela parece ser profundo. Já que ela ainda está dormindo, você acha que consegue fazer o que precisa nessa sala e sair sem acordá-la...",
+        "...Mas ela está completamente indefesa."
+      ],
+      "descricaoRetorno": "Você abre a porta para o mesmo escritório escuro.",
+      "interacoes": {
+        "garota": {
+          "nome": "garota",
+          "aliases": ["mulher", "humana", "funcionaria", "funcionária"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "estadoGarotaEscritorio": 1 },
+                "texto": "Uma humana comum, parece ter desmaiado enquanto trabalhava."
+              },
+              {
+                "requerVariavel": { "estadoGarotaEscritorio": 2 },
+                "texto": "Ela já está morta e seca, não há mais nada para consumir aqui."
+              }
+            ]
+          },
+          "consumir": {
+            "requerVariavel": { "estadoGarotaEscritorio": 1 },
+            "resposta": "[ALTERAR DPS] humana",
+            "falha": [
+              {
+                "requerVariavel": { "estadoGarotaEscritorio": 2 },
+                "texto": "Ela já está morta e seca, não há mais nada para consumir aqui."
+              }
+            ],
+            "setVariavel": { "estadoGarotaEscritorio": 2 },
+            "addVariavel": { "mortos": 1 }
+          }
+        },
+        "mesa": {
+          "nome": "mesa",
+          "aliases": ["escrivaninha"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "pegouCigarro": 0, "pegouPapel": 0 },
+                "texto": "A mesa contém vários certificados de óbito, uma folha de [papel] com um quadrado contendo nove pontos e várias setas e um [cigarro] chique e caro jogado no canto, ainda em sua embalagem."
+              },
+              {
+                "requerVariavel": { "pegouCigarro": 1, "pegouPapel": 0 },
+                "texto": "A mesa contém vários certificados de óbito, uma folha de [papel] com um quadrado contendo nove pontos e várias setas."
+              },
+              {
+                "requerVariavel": { "pegouCigarro": 0, "pegouPapel": 1 },
+                "texto": "A mesa contém vários certificados de óbito e um [cigarro] chique e caro jogado no canto, ainda em sua embalagem."
+              },
+              {
+                "requerVariavel": { "pegouCigarro": 1, "pegouPapel": 1 },
+                "texto": "A mesa contém vários certificados de óbito e... É, nada mais de interessante presente na mesa."
+              }
+            ],
+            "descobre": "itensMesa"
+          }
+        },
+        "papel": {
+          "nome": "papel",
+          "aliases": ["folha", "folha de papel", "anotação"],
+          "visivelSeDescoberta": "itensMesa",
+          "pegar": {
+            "itemId": "papelCemiterio",
+            "requerDescoberta": "itensMesa",
+            "resposta": "Você pega a folha de papel.",
+            "setVariavel": { "pegouPapel": 1 }
+          }
+        },
+        "cigarro": {
+          "nome": "cigarro",
+          "aliases": ["cigarro chique", "maço de cigarro"],
+          "visivelSeDescoberta": "itensMesa",
+          "pegar": {
+            "itemId": "cigarro",
+            "requerDescoberta": "itensMesa",
+            "resposta": "Você pega o cigarro.",
+            "setVariavel": { "pegouCigarro": 1 }
+          }
+        },
+        "armarios": {
+          "nome": "armários",
+          "aliases": ["armario", "armário", "armarios", "gavetas", "gaveta"],
+          "examinar": {
+            "descricao": [
+              "Você abre algumas gavetas e tudo o que encontra são certificados de óbito de diversas pessoas, organizados em pastas.",
+              "Isso até você notar uma pasta nomeada 'Danilo Batista'. Dentro dela há um pequeno caderno de couro com um símbolo pintado em preto, lembrando um [grimorio]."
+            ],
+            "descobre": "descobreGrimorio",
+            "repetida": "Você abre mais alguns armários, mas não acha mais nada de interessante."
+          }
+        },
+        "grimorio": {
+          "nome": "grimório",
+          "aliases": ["grimorio", "caderno", "caderno de couro", "livro"],
+          "visivelSeDescoberta": "descobreGrimorio",
+          "pegar": {
+            "itemId": "grimorio",
+            "requerDescoberta": "descobreGrimorio",
+            "resposta": "Você pega o grimório.",
+            "setVariavel": { "pegouGrimorio": 1 }
+          }
+        }
+      }
+    },
+    "acougue": {
+      "descricao": "Um açougue qualquer enfiado no canto de uma rua, apesar de estar fechado por causa do horário, a porta está apenas encostada, aberta para qualquer um entrar.",
+      "descricaoDetalhada": [
+        {
+          "requerDescoberta": "descobriuFachada",
+          "texto": [
+            "Você olha ao seu redor. O cheiro de [carne] ainda é forte mesmo quando nenhuma está presente no local. Você identifica o cheiro de sangue bovino, de galinha, de bode e humano.",
+            "Você também consegue ver o [balcão] onde as [carnes] são compradas, elas ainda estão lá, sendo refrigeradas.",
+            "...Você percebe que há um tapete na área do [balcão], você puxa e percebe um [alçapão] como aquela pessoa disse. Você abre, revelando o local secreto."
+          ],
+          "descobre": "alcapaoEntrada"
+        },
+        {
+          "requerNaoDescoberta": "descobriuFachada",
+          "texto": [
+            "Você olha ao seu redor. O cheiro de [carne] ainda é forte mesmo quando nenhuma está presente no local. Você identifica o cheiro de sangue bovino, de galinha, de bode e humano.",
+            "Você também consegue ver o [balcão] onde as [carnes] são compradas, elas ainda estão lá, sendo refrigeradas."
+          ]
+        }
+      ],
+      "descricaoRetorno": "[alterar dps] descrição retorno açougue",
+      "interacoes": {
+        "balcao": {
+          "nome": "balcão",
+          "aliases": ["balcão", "balcao"],
+          "examinar": {
+            "descricao": "Cortes de [carnes], frangos, linguiças, salsichas, há de tudo e mais um pouco por aqui. Indo para o outro lado, você percebe que, apesar de fechado, uma das portinhas na sessão de [carne] não está trancado."
+          }
+        },
+        "carne": {
+          "nome": "carne",
+          "aliases": ["carne", "carnes", "pedaço de carne", "pedaco de carne"],
+          "pegar": {
+            "itemId": "carne",
+            "resposta": "Você abre a parte de trás e pega um pedaço qualquer, colocando em uma sacola."
+          }
+        },
+        "alcapao": {
+          "nome": "alçapão",
+          "aliases": ["alçapão", "alcapao", "tapete", "local secreto"],
+          "visivelSeDescoberta": "alcapaoEntrada",
+          "examinar": {
+            "descricao": "Um alçapão escuro revelado debaixo do tapete. Um cheiro metálico muito forte vem lá de baixo."
+          },
+          "ir": {
+            "requerDescoberta": "alcapaoEntrada",
+            "proximoEstado": "salaOculta"
+          }
+        }
+      }
+    },
+    "bar": {
+      "descricao": "Você caminha até o único bar aberto no momento. É um local barato, com cadeiras de plástico e um cheiro incessante de álcool e gordura no ar. Você escuta o som de uma [discussão] vindo do interior.",
+      "descricaoDetalhada": "Você olha ao seu redor. Um cliente e a gerente [discutem] alto sobre o sumiço de um barman. Há garrafas de [vodka] à venda em promoção e, no fundo, uma porta com uma placa de madeira simples indicando o '[banheiro]'.",
+      "descricaoRetorno": "Você volta ao bar. A discussão continua no interior e parece haver ainda mais garrafas de cerveja jogadas pelo chão agora.",
+      "interacoes": {
+        "discussao": {
+          "nome": "discussão",
+          "aliases": ["discussao", "cliente", "gerente", "discutem"],
+          "examinar": {
+            "descricao": "[ALTERAR DEPOIS] utilize 'ir discussão'"
+          },
+          "ir": {
+            "descobre": "barman",
+            "resposta": [
+              {
+                "requerDescoberta": "barmanDevorado",
+                "texto": "Você observa a discussão de longe. Eles continuam reclamando do sumiço do barman... Bem, você acabou de devorá-lo, seria uma PÉSSIMA ideia falar alguma coisa para eles, você se afasta discretamente."
+              },
+              {
+                "requerDescoberta": "corpoBarman",
+                "requerNaoDescoberta": "barmanDevorado",
+                "texto": "Você observa a discussão de longe. Sabendo que o barman está morto no chão do banheiro, você decide não se aproximar para dizer nada, melhor evitar problemas desnecessários."
+              },
+              {
+                "requerNaoDescoberta": "corpoBarman",
+                "texto": "Você se aproxima da discussão e pergunta qual é o problema. 'O problema é que o barman sumiu de novo e eu estou esperando minha bebida!' o cliente exclama, irritado. A gerente coloca a mão no rosto. 'Você poderia procura-lo por mim? Há algo que preciso fazer no momento... Eu diria que ele está preso no [banheiro] de novo' ela pede. Você concorda em procurá-lo e se afasta."
+              }
+            ]
+          }
+        },
+        "banheiro": {
+          "nome": "banheiro",
+          "aliases": ["banheiro", "porta", "porta azul", "placa"],
+          "examinar": {
+            "descricao": "Uma porta de madeira pintada de azul, com a tinta descascando. Ela está aberta."
+          },
+          "ir": {
+            "requerDescoberta": "barman",
+            "falha": "Você não está com vontade de ir ao banheiro.",
+            "proximoEstado": "banheiro"
+          }
+        },
+        "vodka": {
+          "nome": "vodka",
+          "aliases": ["garrafa", "garrafas", "bebida"],
+          "examinar": {
+            "descricao": "Garrafas de vodka da marca 'Askov' alinhadas sob uma placa de 'liquidação'. Custam 10 reais cada, e o bar só aceita dinheiro em espécie."
+          },
+          "pegar": {
+            "itemId": "vodka",
+            "requerItem": "nota10",
+            "removeItem": "nota10",
+            "resposta": "Você entrega os 10 reais ao funcionário e pega uma garrafa de vodka.",
+            "falha": "Você não tem dinheiro para comprar essa vodka. Isso não seria um problema, se não houvesse um funcionário vigiando as garrafas em questão.",
+            "jaPossui": "Você já comprou uma vodka, não precisa gastar mais do que o necessário aqui."
+          },
+          "usar": {
+            "nome": "dinheiro",
+            "itemId": "nota10",
+            "removeItem": "nota10",
+            "resposta": "Você entrega os 10 reais ao funcionário e pega uma garrafa de vodka.",
+            "ganhaItem": "vodka"
+          }
+        }
+      }
+    },
+    "igrejaEx": {
+      "nome": "Exterior da Igreja",
+      "descricao": [
+        "Uma igreja de tamanho respeitável. Os vitrais, como sempre, enaltecem a imagem dela, igual a qualquer outra.",
+        "Você dá alguns passos em direção ao [interior] da igreja e percebe que há um [anjo] no centro, realizando uma prece. Imediatamente, você se esconde na beira da entrada.",
+        "Talvez haja um jeito de despistar esse [anjo], ou de devorá-lo, caso esteja forte o suficiente."
+      ],
+      "descricaoDetalhada": "Você olha ao seu redor. Não há nenhuma [entrada] além da principal. No gramado coberto por uma mistura de neve e lama, você enxerga um sorriso desenhado à mão e várias pegadas antigas.",
+      "descricaoRetorno": "[Alterar dps, retorno igreja]",
+      "interacoes": {
+        "interior": {
+          "nome": "interior",
+          "aliases": ["entrada", "igreja"],
+          "ir": {
+            "requerVariavel": { "anjoIgreja": { "min": 1 } },
+            "resposta": "A igreja agora está vazia e silenciosa, livre para você explorar.",
+            "proximoEstado": "igrejaIn",
+            "falha": [
+              {
+                "requerVariavel": { "anjoIgreja": 0 },
+                "texto": "Seria problemático ser pego pelo anjo nesta hora. Ache um jeito de despistá-lo ou ataque-o, caso esteja forte o suficiente"
+              }
+            ]
+          }
+        },
+        "grimorioDica": {
+          "nome": "grimório",
+          "usar": {
+            "itemId": "grimorio",
+            "resposta": [
+              {
+                "requerVariavel": { "anjoIgreja": 0 },
+                "texto": [
+                  {
+                    "requerVariavel": { "dicaGrimorio": 0 },
+                    "texto": "O solo presente ao redor parece perfeito para o ritual, você poderia invocar o demônio presente nesse grimorio para distrair o [anjo]."
+                  },
+                  {
+                    "requerVariavel": { "dicaGrimorio": 1 },
+                    "texto": [
+                      "O solo presente ao redor parece perfeito para o ritual, você poderia invocar o demônio presente nesse grimorio para distrair o [anjo].",
+                      "(Especifique em seu comando se você quer [usar] o [grimorio] no [anjo].)"
+                    ]
+                  }
+                ]
+              },
+              {
+                "requerVariavel": { "anjoIgreja": 2 },
+                "texto": [
+                  "O anjo já está morto, você não precisa utilizá-lo.",
+                  "Mas você pode, e não seria difícil [consumir o demônio]."
+                ]
+              }
+            ],
+            "setVariavel": { "dicaGrimorio": 1 }
+          }
+        },
+        "anjo": {
+          "nome": "anjo",
+          "aliases": ["anjo"],
+          "consumir": {
+            "requerVariavel": { "anjoIgreja": 0, "mortos": { "min": 2 } },
+            "resposta": [
+              "Você avança sem fazer ruído, e o anjo nem chega a erguer a cabeça. Ajoelhado diante do altar, com as mãos unidas em oração, ele permanece desprevenido.",
+              "Você ataca o anjo antes que ele possa reagir.",
+              "Seus dentes atravessam a pele do pescoço com facilidade, e, antes que ele possa gritar, você tampa sua boca com a mão.",
+              "Por um instante, você vê o rosto do anjo se contorcer em desespero enquanto bebe o sangue divino que corre quente pela sua garganta. Ele era um anjo criado diretamente por ela, você reconhece isso pelo sabor.",
+              "O corpo, agora seco e frio, cai sobre o mármore. A igreja fica em silêncio, livre para você explorar."
+            ],
+            "setVariavel": { "anjoIgreja": 2 },
+            "addVariavel": { "mortos": 1 },
+            "proximoEstado": "igrejaIn",
+            "descobre": "consumoDemonio",
+            "falha": [
+              {
+                "requerVariavel": { "anjoIgreja": 0 },
+                "texto": "Você ainda não está forte o suficiente para atacar um anjo sem causar muito barulho, talvez, com um pouco mais de sangue, você seja capaz de lidar com ele."
+              },
+              {
+                "requerVariavel": { "anjoIgreja": 1 },
+                "texto": "Ele não está mais aqui para você devora-lo."
+              },
+              {
+                "requerVariavel": { "anjoIgreja": 2 },
+                "texto": "Não há motivos para devorar mais desse anjo."
+              }
+            ]
+          },
+          "usar": {
+            "itemId": "grimorio",
+            "aliases": ["grimorio anjo", "grimorio no anjo", "grimorio o anjo"],
+            "requerVariavel": { "anjoIgreja": 0 },
+            "resposta": [
+              "Você desenha o símbolo na neve e morde seu dedo indicador, pingando uma gota sobre o chão. Como esperado, o ritual funciona.",
+              "Você se esconde em um canto antes que o demônio apareça e lhe veja, no momento que esse demônio é completamente invocado, o anjo sai de dentro da igreja as pressas, com sua lança em mãos.",
+              "O demônio, ao ver o anjo, foge às pressas. O anjo parte logo atrás dele, afastando-se para longe do local."
+            ],
+            "setVariavel": { "anjoIgreja": 1 },
+            "removeItem": "grimorio",
+            "falha": [
+              {
+                "requerVariavel": { "anjoIgreja": 2 },
+                "texto": "Não há motivos para distrair um corpo."
+              }
+            ]
+          }
+        },
+        "demonio": {
+          "nome": "demônio",
+          "aliases": ["demonio", "demônio"],
+          "visivelSeDescoberta": "consumoDemonio",
+          "consumir": {
+            "requerDescoberta": "consumoDemonio",
+            "requerVariavel": { "demonioIgreja": 0, "pegouGrimorio": 1 },
+            "resposta": [
+              "Você desenha o símbolo na neve e morde seu dedo indicador, pingando uma gota sobre o chão. Como esperado, o ritual funciona.",
+              "O demônio aparece, você sequer lhe dá chance de reagir antes de segurá-lo. Seus dentes atravessam essa pele demoníaca como se não fosse nada.",
+              "Pateticamente, o demônio tenta tirá-lo do pescoço dele e fugir. Sem muito sucesso.",
+              "Era um demônio qualquer, os vestígios de Hadria nele eram próximos ao nulo, ele sequer notaria a falta.",
+              "Enfim, você se levanta, o demônio, agora reduzido a um corpo seco e gelado, continua deitado na neve manchada em vermelho."
+            ],
+            "addVariavel": { "mortos": 1 },
+            "setVariavel": { "demonioIgreja": 1 },
+            "removeItem": "grimorio",
+            "falha": [
+              {
+                "requerVariavel": { "demonioIgreja": 1 },
+                "texto": "O demônio já se foi, não há necessidade disso."
+              },
+              {
+                "requerVariavel": { "demonioIgreja": 0 },
+                "texto": "Você tenta procurar por isso, mas não encontra nada parecido."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "igrejaIn": {
+      "nome": "Igreja",
+      "descricao": "[ALTERAR DPS] texto 1° vez",
+      "descricaoDetalhada": "Você olha ao seu redor. O chão de mármore está frio, há uma enorme [bíblia] em um [altar], um conjunto de [frascos] contendo água benta ao seu lado e um grande [castiçal].",
+      "descricaoRetorno": "[ALTERAR DPS] texto retorno",
+      "interacoes": {
+        "biblia": {
+          "nome": "bíblia",
+          "aliases": ["biblia", "livro"],
+          "examinar": {
+            "descricao": [
+              "A bíblia está fechada. Você a abre em uma página aleatória, aponta para um versículo e lê:",
+              "'Sendo, pois, justificados pela fé, temos paz com Deus por nosso Senhor Jesus Cristo.'",
+              "Você ri sarcasticamente e fecha o livro pesado.",
+              "...Um pedaço de [papel] cai para fora de seu interior."
+            ],
+            "descobre": "papelIgrejaVisto",
+            "repetida": "Não há motivo para ver a bíblia novamente."
+          },
+          "pegar": {
+            "resposta": "Você se recusa."
+          }
+        },
+        "papel": {
+          "nome": "papel",
+          "aliases": ["pedaço de papel", "pedaco de papel"],
+          "visivelSeDescoberta": "papelIgrejaVisto",
+          "pegar": {
+            "itemId": "papelIgreja",
+            "requerDescoberta": "papelIgrejaVisto",
+            "resposta": "Você pegou o papel."
+          }
+        },
+        "castical": {
+          "nome": "castiçal",
+          "aliases": ["castical", "velas", "vela"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "estadoCastical": 0 },
+                "texto": "Um castiçal antigo e frio. A missa já deve ter acabado há horas, as chamas provavelmente foram apagadas logo após seu fim."
+              },
+              {
+                "requerVariavel": { "estadoCastical": 1 },
+                "texto": "Um castiçal antigo, a única fonte de luz dessa igreja."
+              }
+            ]
+          },
+          "pegar": {
+            "resposta": "O castiçal parece estar preso em seu lugar."
+          },
+          "usar": {
+            "itemId": "isqueiro",
+            "removeItem": "isqueiro",
+            "requerVariavel": { "estadoCastical": 0 },
+            "resposta": [
+              "Você se aproxima do castiçal e acende cada uma das velas usando o seu isqueiro.",
+              "Agora, a igreja possui uma breve luz alaranjada.",
+              "...Você escuta um click vindo do altar."
+            ],
+            "setVariavel": { "estadoCastical": 1 },
+            "addVariavel": { "puzzleIgreja": 1 }
+          }
+        },
+        "altar": {
+          "nome": "altar",
+          "aliases": ["mesa"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "puzzleIgreja": { "max": 2 } },
+                "texto": [
+                  "Você passa os dedos sobre o altar à procura de algo e sente uma pequena brecha.",
+                  "É um compartimento secreto, mas está trancado. Você não vê nenhuma fechadura onde poderia inserir uma chave."
+                ]
+              },
+              {
+                "requerVariavel": { "puzzleIgreja": 3 },
+                "texto": "Você olha o altar e vê que agora tem uma gaveta secreta aberta, você vê um [símbolo]."
+              }
+            ]
+          },
+          "usar": [
+            {
+              "itemId": "agua",
+              "aliases": ["agua", "água", "água benta", "agua benta", "frasco"],
+              "removeItem": "agua",
+              "requerVariavel": { "usouAguaAltar": 0 },
+              "resposta": [
+                "Você abre o frasco de água benta e pinga sobre sua mão.",
+                "Arde, mas não é insuportável como você imaginou que seria.",
+                "...Você escuta um click vindo do altar."
+              ],
+              "setVariavel": { "usouAguaAltar": 1 },
+              "addVariavel": { "puzzleIgreja": 1 }
+            },
+            {
+              "itemId": "rosario",
+              "removeItem": "rosario",
+              "requerVariavel": { "usouRosarioAltar": 0 },
+              "resposta": [
+                "Você se ajoelha sobre o altar, imitando uma posição de reza comum com o crucifixo em suas mãos.",
+                "...Você escuta um click vindo do altar."
+              ],
+              "setVariavel": { "usouRosarioAltar": 1 },
+              "addVariavel": { "puzzleIgreja": 1 }
+            }
+          ]
+        },
+        "frascos": {
+          "nome": "frascos de água benta",
+          "aliases": ["frascos", "frasco", "agua benta", "água benta", "agua"],
+          "pegar": {
+            "itemId": "agua",
+            "resposta": "Você pegou o frasco de água benta."
+          }
+        },
+        "simbolo": {
+          "nome": "símbolo",
+          "aliases": ["simbolo", "símbolo"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "puzzleIgreja": 3 },
+                "texto": "É um dos três que você prometeu."
+              }
+            ]
+          },
+          "pegar": {
+            "itemId": "simbolo3",
+            "requerVariavel": { "puzzleIgreja": 3 },
+            "resposta": "[Alterar dps, pegar simbolo]"
+          }
+        }
+      }
+    },
+    "banheiro": {
+      "descricao": [
+        "Você entra no banheiro esperando um cenário terrível e se surpreende com um ambiente... aceitável.",
+        "Há duas cabines, uma vazia, sem nada que atraia sua curiosidade, e uma trancada.",
+        "Você bate na [porta] da cabine, mas não obtém nenhuma resposta. Apesar disso, através da fresta, você consegue ver alguém caído no chão. Parece que você precisará abrir essa porta sozinho."
+      ],
+      "descricaoDetalhada": [
+        {
+          "requerVariavel": { "estadoPortaBanheiro": 0 },
+          "texto": "É um banheiro pequeno com duas cabines, uma das [portas] está aberta e a outra permanece trancada. Há uma pia com a janela rachada e uma única lâmpada no teto que parece estar sempre ligada."
+        },
+        {
+          "requerVariavel": { "estadoPortaBanheiro": 1 },
+          "texto": "É um banheiro pequeno com duas cabines, ambas abertas, e uma pia com a janela rachada. Há uma única lâmpada no teto que parece estar sempre ligada."
+        }
+      ],
+      "descricaoRetorno": "Você volta ao banheiro. Não há ninguém novo por aqui.",
+      "interacoes": {
+        "porta": {
+          "nome": "porta",
+          "aliases": ["portas", "cabine"],
+          "examinar": {
+            "descricao": "É uma porta de madeira presa por uma dobradiça barata. Dá para ver que os parafusos de fixação na parede estão quase soltos."
+          },
+          "usar": {
+            "itemId": "chaveFenda",
+            "aliases": ["chave", "chave de fenda", "chave fenda", "chavefenda"],
+            "resposta": [
+              "Você remove lentamente as dobradiças da porta com sua chave de fenda, deixando-a de lado no canto do banheiro.",
+              "Atrás dela, você encontra o barman jogado no chão."
+            ],
+            "descobre": "corpoBarman",
+            "removeItem": "chaveFenda",
+            "setVariavel": { "estadoPortaBanheiro": 1 }
+          }
+        },
+        "barman": {
+          "nome": "barman",
+          "aliases": ["corpo", "homem", "defunto", "cadaver", "barman morto"],
+          "visivelSeDescoberta": "corpoBarman",
+          "examinar": {
+            "requerDescoberta": "corpoBarman",
+            "descricao": [
+              "...Nenhum pulso. Parece que ele morreu recentemente.",
+              "Você revista as roupas dele e encontra uma carteira com [dinheiro], especificamente uma nota de 10 reais. Era tudo que ele possuia.",
+              "O [corpo] ainda está fresco, você poderia devorá-lo sem nenhum problema."
+            ],
+            "descobre": "descobriuDinheiro"
+          },
+          "consumir": {
+            "requerDescoberta": "corpoBarman",
+            "requerVariavel": { "estadoBarman": 0 },
+            "resposta": [
+              "Você o segura e o coloca sentado no vaso sanitário, seria mais confortável nessa posição. O corpo, já totalmente mole, tomba para o lado e fica apoiado na parede.",
+              "Você puxa o cabelo dele para trás e morde o seu pescoço. O sangue ainda está na temperatura ideal.",
+              "...Um humano com linhagem demoníaca, provavelmente um feiticeiro. Sua alma já estava condenada ao inferno.",
+              "Você termina de drenar o sangue. O corpo continua imóvel, agora completamente murcho. Você encerra limpando a boca na pia."
+            ],
+            "addVariavel": { "mortos": 1 },
+            "setVariavel": { "estadoBarman": 1 },
+            "descobre": "barmanDevorado",
+            "falha": [
+              {
+                "requerVariavel": { "estadoBarman": 1 },
+                "texto": "Não há mais nada para devorar aqui."
+              }
+            ]
+          }
+        },
+        "dinheiro": {
+          "nome": "dinheiro",
+          "aliases": ["carteira", "nota", "10 reais"],
+          "pegar": {
+            "requerDescoberta": "descobriuDinheiro",
+            "itemId": "nota10",
+            "removeItem": "nota10",
+            "resposta": "Você pega o dinheiro da carteira dele."
+          }
+        }
+      }
+    },
+    "salaOculta": {
+      "nome": "Sala Oculta",
+      "descricao": "Com cuidado, você entra no alçapão e desce uma pequena escada de mão, colocando o pé no chão, você sente um forte cheiro de sangue humano vindo dessa sala, sendo apenas iluminada por uma única lâmpada que pisca em breve intervalos.",
+      "descricaoDetalhada": "Você olha ao seu redor. A sala contém um [corpo] cravado por longas [agulhas] em várias partes. Há também uma [mesa] com alguns itens em cima, além de várias estatuetas religiosas, múltiplos [rosários] pendurado e diversos produtos de limpeza.",
+      "descricaoRetorno": "[texto retorno]",
+      "puzzleCorpo": {
+        "textos": {
+          "inicioOlhar": "Você dá uma olhada nas agulhas inseridas no corpo, você nota que as agulhas dourada e de bronze estão no olho e na traqueia respectivamente, elas parecem bem presas por marcas pretas estranhas.",
+          "meioOlhar": "Há também outras agulhas que parecem soltas no corpo. Você vê {corpo}.",
+          "agulhaOlhar": "a agulha [{cor}] {localFormatado}",
+          "separadorE": " e ",
+          "invUniOlhar": "\n\nA agulha [{cor}] está em sua posse.",
+          "invMultOlhar": "\n\nAs agulhas [{cores}] estão em sua posse.",
+
+          "falhaUsarBase": "Especifique a agulha e o local (ex: usar agulha prateada coração).",
+          "falhaUsarOcupado": "Já há uma agulha nessa área.",
+          "sucessoUsar": "Você coloca a agulha {tipo} {localFormatado}.",
+
+          "falhaPegarCompleto": "Não há motivo para mexer nas agulhas, o ritual parece estar completo.",
+          "falhaPegarFixa": "A agulha {tipo2} está profundamente cravada e não pode ser removida.",
+          "falhaPegarBase": "Especifique a agulha que você deseja pegar (ex: pegar agulha prateada).",
+          "sucessoPegar": "Você retira a agulha {tipo1} {localRetirada}.",
+          "sucessoPegarTodas": "Você recolhe todas as agulhas soltas que estavam pelo corpo e as guarda consigo.",
+          "falhaPegarTodas": "Você já possui todas as agulhas disponíveis."
+        }
+      },
+      "interacoes": {
+        "corpo": {
+          "nome": "corpo",
+          "aliases": ["corpo", "cadaver"],
+          "examinar": {
+            "descricao": [
+              "...Já morreu a muito tempo, o corpo mal tem sangue e sua carne já está nos estágios iniciais da decomposição. suas mãos estão presas com algemas e há apenas um pano separando ele ao chão.",
+              "Você conta cinco longas [agulhas] presas nesse corpo e marcações em vários locais em seu corpo "
+            ]
+          }
+        },
+        "agulhas": {
+          "nome": "agulhas",
+          "aliases": ["agulha", "agulhas"],
+          "examinar": {
+            "descricao": "[ignorar]"
+          }
+        },
+        "mesa": {
+          "nome": "mesa",
+          "aliases": ["mesa"],
+          "examinar": {
+            "descricao": [
+              {
+                "requerVariavel": { "pegouCaderno": 0, "pegouFicha": 0 },
+                "texto": "Sobre a mesa, há um [caderno] preto com uma caneta esferográfica ao lado, além de uma [ficha] com o título 'certidão de óbito'. Tudo está levemente manchado de sangue."
+              },
+              {
+                "requerVariavel": { "pegouCaderno": 1, "pegouFicha": 0 },
+                "texto": "Sobre a mesa manchada de sangue, há apenas uma [ficha] com o título 'certidão de óbito' ao lado de uma caneta esferográfica."
+              },
+              {
+                "requerVariavel": { "pegouCaderno": 0, "pegouFicha": 1 },
+                "texto": "Sobre a mesa manchada de sangue, há apenas um [caderno] preto ao lado de uma caneta esferográfica."
+              },
+              {
+                "requerVariavel": { "pegouCaderno": 1, "pegouFicha": 1 },
+                "texto": "A mesa está vazia, restando apenas a caneta esferográfica e as antigas manchas de sangue escurecido na superfície."
+              }
+            ]
+          }
+        },
+        "caderno": {
+          "nome": "caderno",
+          "aliases": ["caderno", "caderno preto"],
+          "pegar": {
+            "itemId": "caderno",
+            "resposta": "Você pega o Caderno.",
+            "setVariavel": { "pegouCaderno": 1 }
+          }
+        },
+        "ficha": {
+          "nome": "ficha",
+          "aliases": ["ficha", "certidão", "certidao", "certidao de obito"],
+          "pegar": {
+            "itemId": "certificado",
+            "resposta": "Você pega a ficha.",
+            "setVariavel": { "pegouFicha": 1 }
+          }
+        },
+        "rosário": {
+          "nome": "rosário",
+          "aliases": ["rosario", "rosários", "rosário", "rosario"],
+          "pegar": {
+            "itemId": "rosario",
+            "resposta": "Você pega um dos rosários... Ew."
+          }
+        },
+        "simbolo": {
+          "nome": "símbolo",
+          "aliases": ["simbolo", "símbolo"],
+          "visivelSeDescoberta": "simbolo2",
+          "examinar": {
+            "descricao": "É um dos três que você prometeu"
+          },
+          "pegar": {
+            "itemId": "simbolo2",
+            "requerDescoberta": "simbolo2",
+            "resposta": "[alterar dps, pegar simbolo]"
+          }
+        }
+      }
+    },
+    "casa": {
+      "descricao": [
+        "===== FIM DO PLAYTEST =====",
+        "Esse é o fim, vc ainda pode [sair] para ver o resto da cidade mas n tem mto o que fazer, no futuro, aqui terá um final de vdd",
+        "[alterar dps]."
+      ],
+      "interacoes": {}
+    }
+  }
+}

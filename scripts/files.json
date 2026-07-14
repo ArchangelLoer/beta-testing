@@ -1,0 +1,32 @@
+{
+  "LEIAME.TXT": {
+    "tipo": "texto",
+    "conteudo": "Bem-vindo ao D.DIARY OS. Sistema operando normalmente. teste9",
+    "secreto": false
+  },
+  "DIARY1.TXT": {
+    "tipo": "texto",
+    "conteudo": "teste 1.",
+    "requerItem": "simbolo1"
+  },
+  "DIARY2.TXT": {
+    "tipo": "texto",
+    "conteudo": "teste 2",
+    "requerItem": "simbolo2"
+  },
+  "DIARY3.TXT": {
+    "tipo": "texto",
+    "conteudo": "teste 3",
+    "requerItem": "simbolo3"
+  },
+  "FAVORITE-PLACE.PNG": {
+    "tipo": "imagem",
+    "caminho": "arquivos/fav-place.png",
+    "secreto": false
+  },
+  "KETER.EXE": {
+    "tipo": "executavel",
+    "acao": "abrir_keter",
+    "secreto": false
+  }
+}

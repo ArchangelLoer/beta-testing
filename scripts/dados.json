@@ -1,0 +1,1355 @@
+{
+  "sprites": {
+    "base": [
+      "arquivos/Base.png",
+      "arquivos/BaseEgg.png",
+      "arquivos/BaseIrritado.png"
+    ],
+    "fala": {
+      "comum": ["arquivos/DialogoComum1.png", "arquivos/DialogoComum2.png"],
+      "triste": ["arquivos/DialogoDrama1.png", "arquivos/DialogoDrama2.png"],
+      "entediado": [
+        "arquivos/DialogoEntediado1.png",
+        "arquivos/DialogoEntediado2.png"
+      ],
+      "interessado": [
+        "arquivos/DialogoInteressado1.png",
+        "arquivos/DialogoInteressado2.png"
+      ],
+      "irritado": [
+        "arquivos/DialogoIrritado1.png",
+        "arquivos/DialogoIrritado2.png"
+      ]
+    }
+  },
+  "memoria": {
+    "linha1": [
+      "- Eu lembro da minha visão embaçar em um beco escuro, um grande buraco em minha cabeça e o que sobrou da comida à minha frente.",
+      "- Eu lembro da minha visão embaçar em um beco escuro, um grande buraco em minha cabeça e um nefilim já morto à minha frente.",
+      "- Eu lembro da minha visão embaçar em um beco escuro, um grande buraco em minha cabeça e um corpo à minha frente.",
+      "- Eu lembro da minha visão embaçar em um apartamento escuro, um grande buraco em minha cabeça e um anjo já morto à minha frente.",
+      "- Eu lembro da minha visão embaçar em um apartamento escuro, um grande buraco em minha cabeça e um corpo à minha frente.",
+      "- Eu lembro da minha visão embaçar em um apartamento escuro, um grande buraco em minha cabeça e um nefilim já morto à minha frente.",
+      "- Eu lembro da minha visão embaçar em uma igreja, um grande buraco em minha cabeça e um anjo já morto à minha frente.",
+      "- Eu lembro da minha visão embaçar em uma igreja, um grande buraco em minha cabeça e um nefilim já morto à minha frente.",
+      "- Eu lembro da minha visão embaçar em uma igreja, um grande buraco em minha cabeça e o que sobrou da comida à minha frente."
+    ],
+    "linha2": [
+      "- Meus dedos não eram suficientes para me rastejar, meus braços não queriam me levantar, minhas pernas já não estavam mais lá e a comida estava longe demais. Era óbvio o que estava por vir.",
+      "- Meus dedos não eram suficientes para me rastejar, minhas pernas não queriam me levantar, meus braços já não estavam mais lá e a comida estava longe demais. Era óbvio o que estava por vir.",
+      "- Meus dedos não eram suficientes para me rastejar, meus braços não queriam me levantar, minhas pernas já não estavam mais lá e a comida estava longe demais. Era óbvio que eu ia morrer.",
+      "- Meus dedos não eram suficientes para me rastejar, minhas pernas não queriam me levantar, meus braços já não estavam mais lá e a comida estava longe demais. Era óbvio que eu ia morrer.",
+      "- Meus dedos não eram suficientes para me rastejar, meus braços não queriam me levantar, minhas pernas já não estavam mais lá e o corpo estava longe demais. Era óbvio o que estava por vir.",
+      "- Meus dedos não eram suficientes para me rastejar, minhas pernas não queriam me levantar, meus braços já não estavam mais lá e o corpo estava longe demais. Era óbvio o que estava por vir.",
+      "- Meus dedos não eram suficientes para me rastejar, minhas pernas não queriam me levantar, meus braços já não estavam mais lá e o corpo estava longe demais. Era óbvio que eu ia morrer.",
+      "- Meus dedos não eram suficientes para me rastejar, minhas pernas não queriam me levantar, meus braços já não estavam mais lá e o corpo estava longe demais. Era óbvio que eu ia morrer."
+    ],
+    "linha3": [
+      "- Mas os meus olhos se abriram para a mesma neve branca, limpa. Ela refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para a mesma neve, com a ausência do nefilim. Ela refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para a mesma neve, suja pelo corpo. Ela refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para o mesmo chão frio, com a ausência do anjo. A janela refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para o mesmo chão frio, sujo pelo corpo. A janela refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para o mesmo chão frio, com a ausência do nefilim. A janela refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para os degraus de pedra do altar, com a ausência do anjo. O vitral quebrado refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para os degraus de pedra do altar, com a ausência do nefilim. O vitral quebrado refletia o pouco do sol que eu não deveria estar vendo.",
+      "- Mas os meus olhos se abriram para os degraus de pedra do altar, limpos. O vitral quebrado refletia o pouco do sol que eu não deveria estar vendo."
+    ],
+    "linha4": [
+      "- Eu já não respirava, mas se a vida insiste em me chamar mais uma vez...",
+      "- Meu coração já não batia, mas se a vida insiste em me chamar mais uma vez...",
+      "- Meu cérebro já não funcionava, mas se a vida insiste em me chamar mais uma vez..."
+    ]
+  },
+  "boasVindas": {
+    "intro": [
+      { "texto": "Oh, uma pessoa nova.", "expressao": "comum" },
+      { "texto": "Olá, seja bem-vindo ao meu cantinho.", "expressao": "comum" },
+      {
+        "texto": "Sinta-se à vontade para ficar quanto tempo desejar.",
+        "expressao": "comum"
+      }
+    ],
+    "noite": [
+      "De volta nesse horário? Não é que temos tanto em comum...",
+      "Ainda acordado a esta hora? Bem, quem sou eu para julgar?",
+      "Eu aprendi a apreciar esses horários 'não convencionais', eu ganho uma aura imaculável andando nas ruas assim..."
+    ],
+    "sol": [
+      "Meio-dia... O sol já está em seu pico.",
+      "Eu agradeço que esse local tenha uma neblina tão forte, pelo menos essa luz apenas me irrita.",
+      "Eu deveria estar me escondendo desse sol, mas aqui está você para me distrair."
+    ],
+    "manha": [
+      "Você já está de pé? Que disposição...",
+      "O sol mal nasceu e você já está aqui, eu estava me preparando para descansar.",
+      "Bom dia, bem DIA mesmo, já que você decidiu aparecer tão cedo..."
+    ],
+    "genericas": [
+      "Olá de novo. Sentiu minha falta?",
+      "Eu diria que você está começando a gostar de mim.",
+      "Oi.",
+      "Hah, eu senti que você apareceria eventualmente.",
+      "Bom te ver novamente."
+    ],
+    "retornoEstado": {
+      "sangue": "Você retornou... Huh, podia jurar que algo tinha acontecido.",
+      "irritado": "Você... Ah, não se preocupe! Eu não guardo muito rancor.",
+      "cookie": "Bem-vindo de volta, gostou do joguinho?"
+    }
+  },
+  "eventosMute": {
+    "mutadoIdle": [
+      { "texto": "Você tá de sacanagem.", "expressao": "entediado" },
+      {
+        "texto": "Eu estava quieto e você vem aqui pra me silenciar, rude.",
+        "expressao": "entediado"
+      },
+      {
+        "texto": "É, tá tudo bem, eu nem me importo mais.",
+        "expressao": "triste"
+      }
+    ],
+    "mutadoInterrompido": [
+      { "texto": "Ei! Eu estava falando!", "expressao": "irritado" },
+      { "texto": "Mal-educado, espera a sua vez.", "expressao": "irritado" },
+      {
+        "texto": "Eu espero que você acorde rouco amanhã.",
+        "expressao": "irritado"
+      },
+      { "texto": "É sério? No meio da minha fala?", "expressao": "irritado" }
+    ],
+    "desmutadoIdle": [
+      {
+        "texto": "Bem melhor, talvez eu te perdoe por ter me silenciado anteriormente.",
+        "expressao": "comum"
+      },
+      { "texto": "Obrigado pela gentileza.", "expressao": "interessado" },
+      {
+        "texto": "Testando, testando, um, dois... Excelente.",
+        "expressao": "comum"
+      }
+    ]
+  },
+  "dialogosItens": [
+    {
+      "palavras": ["agulha preta"],
+      "resposta": [
+        {
+          "texto": "Isso parece como uma daquelas agulhas ritualísticas.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Você precisa colocar eles no locais corretos dependendo do ritual.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["agulha prateada"],
+      "resposta": [
+        {
+          "texto": "Isso parece como uma daquelas agulhas ritualísticas.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Você precisa colocar eles no locais corretos dependendo do ritual.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["agulha branca"],
+      "resposta": [
+        {
+          "texto": "Isso parece como uma daquelas agulhas ritualísticas.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Você precisa colocar eles no locais corretos dependendo do ritual.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["cigarro"],
+      "resposta": {
+        "texto": "Eu não sei muito sobre esses cigarros mas pela aparência, parece bem caro...",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["isqueiro", "isqueiro chique"],
+      "resposta": {
+        "texto": "Você é o que? Uma criança? Por que você tem um isqueiro enfeitadinho?",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["anotações do cemitério", "anotações"],
+      "resposta": {
+        "texto": "Hmm... É como uma senha de celular, talvez você precise seguir a ordem?",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["pedaço de papel", "papel"],
+      "resposta": [
+        {
+          "texto": "É um papel com três versículos escritos, eu acho que eu lembro o que cada versículo é, deixa eu ler...",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Mateus 26:41: 'Vigiai e orai, para que não entreis em tentação'.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "João 8:12: 'Eu sou a luz do mundo; quem me segue não andará em trevas, mas terá a luz da vida'.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Salmo 51:7: 'Lavai-vos, purificai-vos, tirai a maldade de vossos atos de diante dos meus olhos'.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["carne", "carne crua"],
+      "resposta": {
+        "texto": "É um pedaço de ossobuco.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["grimorio"],
+      "resposta": {
+        "texto": "Um grimório barato com um ritual para invocar um demônio qualquer, você só precisa de um chão capaz de manter a forma do símbolo do ritual e uma gota de seu sangue, não parece ser um demônio tão forte assim para ter um ritual tão simples.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["caderno prateado", "caderno agulha prateada"],
+      "itemRequerido": ["caderno"],
+      "resposta": {
+        "texto": "Aqui diz... Se o sacrificio tiver uma prole de sangue, coloque a agulha no coração, se o sacrificio tiver mais de uma prole, coloque a agulha na língua, caso as proles tenham sido gêmeos, coloque a agulha no estômago, deixe a agulha deitada caso nenhuma descrição encaixe.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["caderno branco", "caderno agulha branca"],
+      "itemRequerido": ["caderno"],
+      "resposta": {
+        "texto": "Aqui diz... Se o sacrificio morreu antes da juventude, coloque a agulha em seu cérebro, se o sacrificio morreu em sua juventude, coloque a agulha em seu olho, se ele morreu em seu devido tempo, coloque a agulha em seu intestino",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["caderno preto", "caderno agulha preta"],
+      "itemRequerido": ["caderno"],
+      "resposta": {
+        "texto": "Aqui diz... Se o sacrificio morreu diante a um acidente, coloque a agulha em seu figado, se o sacrificio morreu subtamente, coloque a agulha em seu cerebro, se ele morreu em seu sono, coloque a agulha no olho, deixe a agulha deitada caso nenhuma descrição encaixe.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["simbolo"],
+      "resposta": {
+        "texto": "Huh, eu posso jurar que já vi esse símbolo em algum lugar.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": [
+        "10 reais",
+        "dez reais",
+        "nota de 10 reais",
+        "nota de dez reais",
+        "nota 10 reais",
+        "nota dez reais"
+      ],
+      "resposta": {
+        "texto": "Tá duro? Dorme.",
+        "expressao": "interessado"
+      }
+    },
+    {
+      "palavras": ["chave antiga"],
+      "resposta": {
+        "texto": "Uma chave velha e enferrujada.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["chave de fenda"],
+      "resposta": {
+        "texto": "Uma... Ferramenta bem comum, nada a comentar.",
+        "expressao": "entediado"
+      }
+    },
+    {
+      "palavras": ["agua", "agua benta"],
+      "resposta": {
+        "texto": "Um frasco de água benta... Sério?",
+        "expressao": "irritado"
+      }
+    },
+    {
+      "palavras": ["rosario"],
+      "resposta": {
+        "texto": "Seja cristão, evangelico ou seja lá o que você é a vontade, mas não esfregue na minha cara.",
+        "expressao": "entediado"
+      }
+    },
+    {
+      "palavras": ["caderno"],
+      "resposta": {
+        "texto": "É um caderno cheio de instruções para algum tipo de ritual, há instruções para onde cada tipo de agulha deve ser inserido, se você me especificar qual das agulhas você quer instruções, eu posso te dizer o que está escrito aqui.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["certidao", "certidao de obito", "obito"],
+      "resposta": {
+        "texto": "É uma certificado de óbito meio antigo, o nome do falecido é 'Danilo Batista', viveu até os 86, era viúvo, morreu em sua própria casa devido a um infarto, foi pronunciado morto quando os médicos chegaram, deixou dois filhos adotivos para trás, que pena.",
+        "expressao": "comum"
+      }
+    },
+    {
+      "palavras": ["vodka", "vodka askov"],
+      "resposta": {
+        "texto": "Ew, você bebe isso?",
+        "expressao": "comum"
+      }
+    }
+  ],
+  "dialogosComuns": [
+    {
+      "palavras": ["sangue"],
+      "respostas": [{ "texto": "[easter egg]", "expressao": "interessado" }]
+    },
+    {
+      "palavras": ["sexo", "transar", "foder", "trepar"],
+      "respostas": [
+        { "texto": "Quem que começa um diálogo assim?", "expressao": "comum" },
+        { "texto": "Freaky", "expressao": "interessado" },
+        {
+          "texto": "Eu sou de menor, se eu fizesse um exposed você taria fodido.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Com esse teu vocabulário, já dava para virar cantor funk.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["namoro", "namorar", "date", "encontro"],
+      "respostas": [
+        {
+          "texto": "Você tá me chamando para sair? Que fofo... Mas não, obrigado.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Pff- Valeu, mas você não é meu tipo, obrigado.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Você DEFINITIVAMENTE não quer isso comigo.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["dealdiary"],
+      "respostas": [
+        {
+          "texto": "Diário é algo tão infantil... Quer dizer, talvez eu devesse ter tido um, resolveria muitos problemas.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu não tenho um diário, mas se tivesse, acho que seria algo mais... Visual? Tipo um sketchbook, ou uma coleção de fotos... Acho que eu não teria saco para manter um.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Deal Diary... Esse nome nem faz sentido, a gente começou a negociar diários- Quê? Tamo no TERCEIRO?",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["dormir"],
+      "respostas": [
+        { "texto": "Vai você porra... Eu, Hein.", "expressao": "entediado" }
+      ]
+    },
+    {
+      "palavras": ["feliz"],
+      "respostas": [
+        {
+          "texto": "Estou bem feliz, muito obrigado por perguntar.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["67", "sixseven"],
+      "respostas": [
+        {
+          "texto": "[SIX SEVEEEEEEEN +AURA!!!!!!!!]",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["musica", "música"],
+      "respostas": [
+        {
+          "texto": "Eu ando escutando Linkin Park em loop sem parar, devo ter todas as músicas decoradas.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Tem essa banda que bombou recentemente, os Twenty One Pilots, eu gostei da música 'HeavyDirtySoul' do álbum novo.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Um segredo meu, mas as vezes eu coloco aqueles funk pesado para tocar, meu maior guilty pleasure.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["supernatural"],
+      "respostas": [
+        {
+          "texto": "É uma série, eu não sou o maior fã de séries mas eu me diverti com alguns episódios.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Os produtores enchem certas raças de aura quando na realidade eles são street-tier no máximo na realidade.",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["destiel"],
+      "respostas": [
+        {
+          "texto": "Isso é aqueles nome de ship, né? Se for gay talvez eu me interesse.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["persona"],
+      "respostas": [
+        {
+          "texto": "Eu ainda estou preso na sleeping table, já desisti de continuar.",
+          "expressao": "triste"
+        }
+      ]
+    },
+    {
+      "palavras": ["alho"],
+      "respostas": [
+        { "texto": "Um ótimo anticoagulante, sabia?", "expressao": "comum" }
+      ]
+    },
+    {
+      "palavras": ["chuva", "tempestade"],
+      "respostas": [
+        {
+          "texto": "Ainda bem que eu carrego um guarda-chuva, não quero arriscar.",
+          "expressao": "entediado"
+        },
+        {
+          "texto": "Esse lugar neva, bem melhor que a chuva.",
+          "expressao": "entediado"
+        },
+        { "texto": "Ugh...", "expressao": "triste" }
+      ]
+    },
+    {
+      "palavras": ["ferida", "corte", "veia", "hematoma"],
+      "respostas": [
+        { "texto": "Você também sente o cheiro?", "expressao": "interessado" },
+        { "texto": "Está fresco.", "expressao": "interessado" },
+        {
+          "texto": "Você tá tentando me atiçar por eu ser um vampiro?",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Eu acho engraçado como alguns não conseguem se controlar.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["raça"],
+      "respostas": [
+        {
+          "texto": "Diga uma raça específica e eu falarei sobre.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["vampiro"],
+      "respostas": [
+        {
+          "texto": "Eu devo ser um, não faria sentido eu ser nada mais, se essas raças divinas existem... Vampiros não devem ser tão incomuns assim.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["idade"],
+      "respostas": [
+        {
+          "texto": "Eu não faço ideia de quando eu nasci, mas eu não diria que passo dos 16.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu ainda sou jovem, estou na minha melhor época.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["vida", "memoria", "memória"],
+      "respostas": [
+        {
+          "texto": "Eu sei que às vezes os detalhes mudam... Todas elas soam como verdade para mim, não sei o que realmente aconteceu.",
+          "expressao": "triste"
+        },
+        {
+          "texto": "Tem algo extremamente importante faltando, mas eu não me lembro.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Pegue sua versão predileta e siga com ela, você tem as mesmas chances de estar certo do que eu, bem baixas.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["beco"],
+      "respostas": [
+        {
+          "texto": "Era um qualquer, cheio de neve e lixo, um canto que ninguém passaria sozinho à noite, não tinha nada de importante lá.",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["apartamento", "apt"],
+      "respostas": [
+        {
+          "texto": "Um apartamento qualquer de um prédio próximo ao parque. Era vazio... Seriamente vazio, eu não lembro de nenhuma mobília lá, como se a casa sequer tivesse sido vendida ainda.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["igreja"],
+      "respostas": [
+        {
+          "texto": "Eu me pergunto o que caralhos eu estava fazendo lá, eu espero que essa seja uma memória falsa.",
+          "expressao": "entediado"
+        },
+        {
+          "texto": "O chão de mármore, as velas, os bancos de madeira... Só podia ser uma igreja qualquer.",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["comida", "corpo"],
+      "respostas": [
+        {
+          "texto": "Eu tenho certeza de ter visto traços divinos naquele corpo, algo como runas ou asas.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "No início eu pensei que eu, de alguma forma, consegui devorar aquilo e foi assim que eu me regenerei, mas às vezes eu me lembro de ver o corpo ainda lá estirado quando eu acordei.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Se era um anjo ou um nefilim eu não vou saber dizer. Eu estava em um péssimo estado, mas eu deixei ele bem pior.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["mao", "braço", "mão"],
+      "respostas": [
+        {
+          "texto": "Essa mão sempre esteve enfaixada até onde eu me lembro.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Não importava se eu tinha um ou dois braços, eu não conseguia me rastejar igual.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Pode não parecer, mas eu sou BEM fortinho, sleeper build é como chamam.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["perna"],
+      "respostas": [
+        {
+          "texto": "Isso é totalmente irrelevante ao assunto, mas... Eu quase não sinto toque ou temperatura na perna direita.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Mais frequentemente as pernas não tão lá do que estão em minhas memórias.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["olho", "olhos"],
+      "respostas": [
+        {
+          "texto": "Apesar de não ser possível enxergar por aqui, são azuis, muito obrigado.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Algo de errado com eles?",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["cabeça", "cerebro", "cérebro"],
+      "respostas": [
+        {
+          "texto": "Você tá querendo dizer que tem algo de errado comigo? Rude...",
+          "expressao": "triste"
+        },
+        {
+          "texto": "Em todas as memórias, minha cabeça doía bastante, é minha única certeza.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu definitivamente devo ter algum dano cerebral, muito sangue saía daquele buraco e... Bem, isso tudo.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["dente", "presas"],
+      "respostas": [
+        { "texto": "Eu sei, eu sei, são iradas.", "expressao": "interessado" },
+        {
+          "texto": "Elas sempre crescem de volta, bem mais rápidas do que o esperado.",
+          "expressao": "comum"
+        },
+        { "texto": "Cuidado, são afiadas.", "expressao": "interessado" }
+      ]
+    },
+    {
+      "palavras": ["morte", "morrer"],
+      "respostas": [
+        { "texto": "Que assunto mórbido... Hehehe.", "expressao": "comum" },
+        {
+          "texto": "Eu podia sentir o frio, a vontade de descansar e meu corpo desligando. É bem diferente de ir dormir.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu não lembro do que eu estava pensando enquanto isso acontecia, só lembro de acordar, e eu mal lembro de como eu acordei.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu pensei ter sonhado, mas cada dia que passa eu fico mais convencido que aquele sonho era real.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["sonho"],
+      "respostas": [
+        { "texto": "...Era vermelho?", "expressao": "comum" },
+        {
+          "texto": "Molhado, metálico, era similar, mas não idêntico.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "É comum para pessoas como eu... Isso não faz sentido, não sei por que eu falei isso.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Não, isso aconteceu depois... Ou antes.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Penas brancas caíam... ou eram cinzas?",
+          "expressao": "comum"
+        },
+        { "texto": "Eu olhei para cima e senti fome.", "expressao": "comum" },
+        {
+          "texto": "Eu contei cinco partes. Depois contei três.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu sabia explicar isso há um segundo.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu me via, era eu, mas não era eu, era diferente.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu reconheci aquele rosto. O problema é que era o meu.",
+          "expressao": "comum"
+        },
+        { "texto": "Alguém estava chorando.", "expressao": "comum" },
+        { "texto": "Alguém estava rindo.", "expressao": "comum" }
+      ]
+    },
+    {
+      "palavras": ["faixas", "bandagens", "bandagem"],
+      "respostas": [
+        {
+          "texto": "Eu sempre carrego em meu casaco um rolo delas, extremamente útil.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Depois que tirei elas da minha mão, eu entendi porque eu deixava elas assim.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Quando eu começo a ver mais vermelho do que branco, eu já sei que está na hora de trocá-las.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["alicate"],
+      "respostas": [
+        {
+          "texto": "Eu pensei que isso me ajudaria a me manter sob controle. Eu continuo fazendo, nem que seja pela rotina.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Agora que eu tenho o jeito, eu poderia fazer com os dedos.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["carteira"],
+      "respostas": [
+        {
+          "texto": "Prometo pela minha alma que eu não roubei nada. Eu acordei com isso tudo.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Além do dinheiro físico e um cartão fidelidade... Nada.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Contei algumas vezes, quase 7 mil reais.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["cartao", "cartão"],
+      "respostas": [
+        {
+          "texto": "Era de uma pizzaria local, estava com fome.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["dinheiro"],
+      "respostas": [
+        {
+          "texto": "Ainda bem que eu acordei como alguém rico.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["celular"],
+      "respostas": [
+        {
+          "texto": "Um iPhone 6s Plus. Acabei formatando, não me lembrava da senha.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu pensei em pegar os contatos do chip para ligar para alguém, mas... Nenhum chip nesse celular.",
+          "expressao": "triste"
+        },
+        {
+          "texto": "Já deixei cair umas nove vezes, surpreso que sequer rachou.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["relogio", "relógio"],
+      "respostas": [
+        {
+          "texto": "É extremamente importante saber que horas são, principalmente quando o sol pode te afetar.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Um Tissot T41148333 Le Locle, é recente.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu devo ser realmente rico para ter algo assim comigo no bolso.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["toxic waste", "toxicwaste"],
+      "respostas": [
+        {
+          "texto": "Eu andei lendo umas histórias lá, as vezes são boas, as vezes... São meio merda.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["sol"],
+      "respostas": [
+        {
+          "texto": "Apesar de tudo, eu gosto de ver o pôr do sol.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Uma vez eu fui pego de surpresa, não foi nada sério mas eu senti minha perna arder, nunca mais tentei minha sorte.",
+          "expressao": "triste"
+        },
+        {
+          "texto": "Seus raios mal atravessam as nuvens desse local, sorte minha.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["lua"],
+      "respostas": [
+        {
+          "texto": "Eh... Você vai ter uma opinião melhor sobre a lua com um lobisomem .",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["lua"],
+      "respostas": [
+        {
+          "texto": "Eh... Você vai ter uma opinião melhor sobre a lua com um lobisomem .",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["anjo", "anjos"],
+      "respostas": [
+        { "texto": "Heh.", "expressao": "interessado" },
+        {
+          "texto": "Eu já vi um, então... Eu acho que eles existem, né?",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu pensava que, se eles existissem, eles seriam mais fortes.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eles não são tão legais quanto eu imaginava, foi decepcionante.",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["demonio", "demônio"],
+      "respostas": [
+        {
+          "texto": "Nunca vi um, mas se anjos e feiticeiros existem, então demônios existem também.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Devem ter um cheiro horrível, né? Tipo... Azedo, e podre, sei lá.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Será que eles são tão feios quanto a mídia diz?",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["lobisomem", "lobisomens"],
+      "respostas": [
+        { "texto": "Eu espero que não existam.", "expressao": "entediado" },
+        {
+          "texto": "Eu não entendo o apego de lobisomem, tipo... Tá, vampiros também não são a coisa mais legal do mundo, mas pelo menos eu não me transformo em um animal gigante e peludo que tem que uivar pra lua toda vez que a lua cheia aparece.",
+          "expressao": "entediado"
+        },
+        { "texto": "...Eu fico na minha com essa.", "expressao": "entediado" }
+      ]
+    },
+    {
+      "palavras": ["ceifador"],
+      "respostas": [
+        { "texto": "Tão trabalhando pouco.", "expressao": "comum" },
+        { "texto": "Perderam uma chance das grandes.", "expressao": "comum" },
+        {
+          "texto": "Como é aquela frase? 'Working hard or hardly working?' Eles tão 'hardly working', com certeza.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["humano"],
+      "respostas": [
+        { "texto": "Sem graça.", "expressao": "comum" },
+        {
+          "texto": "Hambúrguer congelado se fosse uma raça.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Sendo honesto, eu só tô sendo chato, não tem nada de errado em ser humano, mas depois que você ganha esses poderzinhos... Cê não quer voltar atrás.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["feiticeiro"],
+      "respostas": [
+        {
+          "texto": "Ah, já vi um desses, maioria era pretensiosa.",
+          "expressao": "entediado"
+        },
+        {
+          "texto": "Eu pensei que a história de Fausto seria o suficiente para alertar sobre esse perigo... Humanos, não?",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu lembro de um ditado, 'o diabo mora entre os detalhes', se um dia eu quiser fazer um acordo eu vou começar estudando advocacia.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["nephelim", "nefilim", "nefilins", "nephelins"],
+      "respostas": [
+        {
+          "texto": "ELA realmente só tá permitindo tudo...",
+          "expressao": "entediado"
+        },
+        {
+          "texto": "Sei lá, eu não tenho nada de interessante para comentar sobre eles, são básicos.",
+          "expressao": "entediado"
+        },
+        {
+          "texto": "O que me assusta disso é que anjos são capazes de se reproduzir, isso significa que essa decisão foi deliberada.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["instituto"],
+      "respostas": [
+        {
+          "texto": "Trabalhar toda sua vida para ainda ser visto como um incômodo, patético.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Parece que eu irritei eles, não me recordo como.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["veu", "véu"],
+      "respostas": [
+        {
+          "texto": "O paranormal não vem para a nossa realidade de maneira fácil. Ou pelo menos, as coisas deveriam ser assim... Heh.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["reflexo", "espelho"],
+      "respostas": [
+        {
+          "texto": "Sabia que esse mito veio por causa da utilização de prata em espelhos antigos?",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu consigo me olhar por um espelho tranquilamente, adoro a imagem que é refletida.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu sei que é meio distante do assunto mas... Imagina se vampiros fossem incapazes de tirar selfies? Seria uma merda, né?",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["nome"],
+      "respostas": [
+        {
+          "texto": "Eu sei... Eu sei... Blocos brancos não são um nome válido.",
+          "expressao": "triste"
+        },
+        {
+          "texto": "Eu não posso dizer, não por escolha.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Quando eu arranjar um nome maneiro o suficiente, eu te conto.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["fome", "comer", "alimentar", "consumir", "devorar"],
+      "respostas": [
+        {
+          "texto": "Não é porque eu sou um vampiro que eu vou pular em ti para te devorar.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Um churrasco cairia bem agora... Ou talvez um hambúrguer.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Você tá tentando me atiçar por eu ser um vampiro?",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Todos sentem fome, raro é não sentir.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["carmesim"],
+      "respostas": [
+        {
+          "texto": "Um apelido carinhoso ao que me nutre.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Só de ouvir eu sinto a vontade de devorar novamente.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Uma dica? Não fale isso a mim quando seu pescoço está tão próximo.",
+          "expressao": "interessado"
+        },
+        { "texto": "Hehehe.", "expressao": "interessado" }
+      ]
+    },
+    {
+      "palavras": ["hambúrguer", "hamburguer"],
+      "respostas": [
+        {
+          "texto": "Eu acho a salada uma parte essencial de um bom hambúrguer, desde que não exagere, pra não esconder a textura da carne.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Quanto mais carne, melhor.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Nunca comeria um hambúrguer vindo de fastfood, eu preciso de carne de verdade, a textura daqueles é terrível.",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["churrasco"],
+      "respostas": [
+        {
+          "texto": "Eu gosto de sentir a hemoglobina sair da carne quando eu a mordo.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Quanto mais carne, melhor.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Nunca comeria um hambúrguer vindo de fastfood, eu preciso de carne de verdade, a textura daqueles é terrível.",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["restaurante"],
+      "respostas": [
+        {
+          "texto": "Há uma churrascaria no distrito B, minha predileta.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Eu não preciso me alimentar normalmente como 'pessoas normais', ir para um restaurante é apenas lazer.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["havoc", "arwyn"],
+      "respostas": [
+        {
+          "texto": "Eu conheço esse nome... É, menti, não faço ideia de quem seja.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": [
+        "mae",
+        "pai",
+        "mamae",
+        "papai",
+        "parentes",
+        "responsaveis",
+        "responsáveis"
+      ],
+      "respostas": [
+        {
+          "texto": "Não tenho ideia de quem são ou como achá-los.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu pensei na possibilidade de ser órfão, mas levando em conta as coisas que tenho comigo, eu não acho que eu conseguiria comprar isso sozinho.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Até o momento eu não achei nenhum cartaz de desaparecido. Talvez eles estejam em outro lugar.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["jaqueta", "casaco"],
+      "respostas": [
+        {
+          "texto": "Eu comprei em uma loja chique, te diria onde, mas não acho que você tem dinheiro o suficiente para comprar.",
+          "expressao": "interessado"
+        },
+        { "texto": "Perfeito para esse frio.", "expressao": "comum" }
+      ]
+    },
+    {
+      "palavras": ["encasacado"],
+      "respostas": [
+        {
+          "texto": "Sim... Eu visto um casaco... Excelente observação...",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["aisha", "deusa"],
+      "respostas": [
+        {
+          "texto": "Você quer pôr nós dois em apuros dizendo isso.",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "A criança com a bola, ela quer ditar como os outros devem viver, como se eu fosse escutar uma velha.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Acho que você espera que eu odeie ela, né? Um vampiro com um leve preconceito contra tudo vindo do céu... Mas a verdade é que eu realmente não tenho nenhuma opinião forte, é só triste.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Uma necessidade de ter tudo sob controle nas palmas das mãos, quando ela nunca sequer chegou perto disso. Se eu fosse ela, me aposentava.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["hadria"],
+      "respostas": [
+        {
+          "texto": "Eu tenho a breve memória de ser relacionado a ele, mas não é algo que eu realmente acredito ou queira, sendo honesto.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Eu devia quebrar seus dedos por você ter tido a audácia de falar sobre isso comigo... Ah, eu tô brincando!",
+          "expressao": "interessado"
+        },
+        {
+          "texto": "Blá blá blá 'ajoelhe' blá blá blá 'respeito', eu acho que ele seria algo desse tipo.",
+          "expressao": "entediado"
+        },
+        {
+          "texto": "Grande rei do inferno, eu sempre tive a curiosidade de ver como ele se parece, curiosidade essa que eu prefiro não testar minha sorte.",
+          "expressao": "interessado"
+        }
+      ]
+    },
+    {
+      "palavras": ["ceu", "paraiso", "céu", "paraíso"],
+      "respostas": [
+        {
+          "texto": "Tá aí um local que eu nunca vou poder visitar.",
+          "expressao": "triste"
+        },
+        {
+          "texto": "Com sorte, quem sabe eu consiga vislumbrar esse paraíso.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Enquanto Aisha e os anjos estiverem lá... É, tô fora.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["inferno"],
+      "respostas": [
+        {
+          "texto": "Um dia eu desejo descobrir como se parece.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Se lá for exatamente como eu ouvi... Heh.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["calisto"],
+      "respostas": [
+        {
+          "texto": "É um dos ceifadores, não? Tirando isso... Não sei muito sobre ele.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Acho que eu vi uma das artes dele em algum lugar, eu achei... Superestimado.",
+          "expressao": "entediado"
+        }
+      ]
+    },
+    {
+      "palavras": ["carmine"],
+      "respostas": [
+        {
+          "texto": "Às vezes, quando interajo no carmesim, eu escuto esse nome.",
+          "expressao": "comum"
+        },
+        {
+          "texto": "Não faço ideia de quem seja, mas sinto que temos algo em comum, mesmo que breve.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["delta"],
+      "respostas": [
+        {
+          "texto": "Delta? É, não me soa tão distante, mas não lembro quem seja.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": ["encapuzado"],
+      "respostas": [
+        { "texto": "Mas eu não visto capuz.", "expressao": "comum" }
+      ]
+    },
+    {
+      "palavras": ["enrabado"],
+      "respostas": [{ "texto": "Não.", "expressao": "irritado" }]
+    },
+    {
+      "palavras": ["tumblr"],
+      "respostas": [
+        { "texto": "Eu tenho uma conta lá, raramente interajo lá.", "expressao": "comum" },
+        { "texto": "Você quer me seguir lá? Heh, vai sonhando.", "expressao": "comum" }
+      ]
+    },
+    {
+      "palavras": ["judas"],
+      "respostas": [
+        { "texto": "Hmm.", "expressao": "irritado" },
+        { "texto": "Um idiota.", "expressao": "irritado" },
+        { "texto": "Palhaço...", "expressao": "irritado" }
+      ]
+    },
+    {
+      "palavras": ["aura"],
+      "respostas": [
+        { "texto": "Feels the aura...", "expressao": "comum" },
+        {
+          "texto": "♪ A moda agora é farmar aura por isso esse papo chato type piccolo antes de ser brutalmente-♪ Ah, eu lembrei dessa música.",
+          "expressao": "comum"
+        }
+      ]
+    },
+    {
+      "palavras": [
+        "eloa",
+        "eloá",
+        "cielo",
+        "freya",
+        "denise",
+        "eclipse",
+        "gabriela",
+        "fushi",
+        "cael"
+      ],
+      "respostas": [
+        { "texto": "Quem?", "expressao": "comum" },
+        { "texto": "Uhh..?", "expressao": "comum" },
+        { "texto": "Eu deveria saber quem é?", "expressao": "comum" },
+        {
+          "texto": "Não faço ideia de quem você tá falando.",
+          "expressao": "comum"
+        },
+        { "texto": "Ei! Esse é... Eu não tenho ideia.", "expressao": "comum" }
+      ]
+    }
+  ],
+  "respostasRepetidas": [
+    "Você só vai ficar repetindo a mesma coisa?",
+    "Parece que você não tem mais nada para falar, hein?",
+    "Vai ficar nisso mesmo?",
+    "Eu já respondi isso, sabia?",
+    "Tá sem criatividade?",
+    "Vamos tentar falar de outra coisa.",
+    "Não vou me repetir.",
+    "Tente falar de algo diferente.",
+    "Ah sim, algo novo para falar sobre esse assunto... Era o que você esperava ouvir, né?"
+  ],
+  "clicks": [
+    "Ow.",
+    "Você gosta de ficar cutucando os outros?",
+    "Eu não tenho medo de toque físico.",
+    "Hah- Tá fazendo cócegas.",
+    "Você tá tentando me provocar?",
+    "Você é engraçado.",
+    "Huh.",
+    "Aperta com mais força.",
+    "O que você quer com isso?"
+  ],
+  "arrastoRetrato": [
+    { "texto": "Ei.", "expressao": "comum" },
+    {
+      "texto": "Desrespeitoso empurrar os outros assim.",
+      "expressao": "comum"
+    },
+    { "texto": "Eh, eu gosto daqui.", "expressao": "comum" },
+    {
+      "texto": "Nem para me chamar a um encontro...",
+      "expressao": "interessado"
+    }
+  ]
+}

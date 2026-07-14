@@ -1,0 +1,202 @@
+export function initTerminal(app) {
+  const terminalElement = $('#terminal-computador');
+  if (!terminalElement.length) return;
+
+  const sistemaArquivos = {
+    "LEIAME.TXT": "PROJETO KETER.\nNão confie nas anomalias. Siga as regras de contenção.",
+    "FAVORITE-PLACE.JPG": "IMAGEM",
+    "KETER.EXE": "EXECUTAVEL"
+  };
+
+  const caminhosImagens = {
+    "FAVORITE-PLACE.JPG": "arquivos/fav-place.png"
+    // "FOTO.PNG": "arquivos/foto.png"
+  };
+
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  function wordWrap(texto, limiteColunas) {
+    if (!texto) return "";
+    const linhas = String(texto).split("\n");
+    const resultado = [];
+    for (const linha of linhas) {
+      const palavras = linha.split(" ");
+      let linhaAtual = "";
+      for (const palavra of palavras) {
+        if (palavra.length > limiteColunas) {
+          if (linhaAtual) { resultado.push(linhaAtual.trimEnd()); linhaAtual = ""; }
+          resultado.push(palavra);
+        } else if (linhaAtual.length + palavra.length + 1 > limiteColunas) {
+          resultado.push(linhaAtual.trimEnd());
+          linhaAtual = palavra + " ";
+        } else {
+          linhaAtual += palavra + " ";
+        }
+      }
+      if (linhaAtual) resultado.push(linhaAtual.trimEnd());
+    }
+    return resultado.join("\n");
+  }
+
+  function testarImagem(src) {
+    return new Promise((resolve) => {
+      const imagem = new Image();
+
+      imagem.onload = () => resolve(src);
+      imagem.onerror = () => {
+        const fallback = "arquivos/teste.png";
+        const imagemFallback = new Image();
+
+        imagemFallback.onload = () => resolve(fallback);
+        imagemFallback.onerror = () => resolve(null);
+        imagemFallback.src = fallback;
+      };
+
+      imagem.src = src;
+    });
+  }
+
+  app.escrever = async function(term, textoRaw, animar = false) {
+    if (!term || !textoRaw) return;
+    const maxCols = term.cols() > 5 ? term.cols() - 2 : 60;
+    let texto = textoRaw;
+    if (!Array.isArray(texto)) texto = [String(texto)];
+    texto = texto.map(t => wordWrap(t, maxCols));
+
+    for (let i = 0; i < texto.length; i++) {
+      const linhas = texto[i].split("\n");
+      for (const linha of linhas) {
+        if (!animar) { term.echo(linha); } 
+        else {
+          term.echo(linha, { typing: true, delay: 15 });
+          await delay((linha.length * 15) + 200);
+        }
+      }
+      if (animar && i < texto.length - 1) await delay(300);
+    }
+    term.echo("");
+  };
+
+  function mudarAba(idTerminalAlvo) {
+    $('.aba-cmd').removeClass('ativa');
+    $(`.aba-cmd[data-target="${idTerminalAlvo}"]`).addClass('ativa');
+
+    $('.instancia-terminal').removeClass('ativa');
+    $(`#${idTerminalAlvo}`).addClass('ativa');
+  }
+
+  $('#barra-abas-terminal').on('click', '.aba-cmd', function() {
+    const alvo = $(this).data('target');
+    mudarAba(alvo);
+  });
+
+  terminalElement.terminal(async function(comandoBruto, term) {
+    const comando = comandoBruto.trim().toUpperCase();
+
+    if (comando === "HELP" || comando === "AJUDA") {
+      app.escrever(term, "Comandos disponíveis:\n  DIR         - Lista os arquivos do diretório atual\n  TYPE [arq]  - Lê o conteúdo de um arquivo de texto\n  [arquivo]   - Executa um arquivo ou programa");
+    } 
+    else if (comando === "DIR") {
+      let textoDir = "Diretório de C:\\%#@%?&\\SALVOS\n";
+      Object.keys(sistemaArquivos).forEach(arq => textoDir += `\n  ${arq}`);
+      app.escrever(term, textoDir);
+    } 
+    else if (comando.startsWith("TYPE ")) {
+      const arquivo = comando.split(" ")[1];
+      if (sistemaArquivos[arquivo] && arquivo.endsWith(".TXT")) {
+        app.escrever(term, sistemaArquivos[arquivo]);
+      } else {
+        app.escrever(term, `Arquivo '${arquivo}' não encontrado ou não é um arquivo de texto.`);
+      }
+    } 
+    else if (comando === "KETER.EXE" || comando === "KETER") {
+      const idTerminalKeter = "terminal-keter";
+
+      if ($(`#${idTerminalKeter}`).length) {
+        term.echo("O KETER.EXE já está em execução em outra janela.");
+        mudarAba(idTerminalKeter);
+        return;
+      }
+
+      term.echo("Iniciando KETER.EXE numa nova janela...");
+
+      $('#barra-abas-terminal').append(
+        `<button class="aba-cmd" data-target="${idTerminalKeter}">[ KETER.EXE ]</button>`
+      );
+
+      $('#container-terminais').append(
+        `<div id="${idTerminalKeter}" class="instancia-terminal"></div>`
+      );
+
+      const terminalKeter = $(`#${idTerminalKeter}`).terminal(function(comandoJogo, termJogo) {
+        app.motorJogo.processarComando(comandoJogo, termJogo);
+      }, {
+        greetings: "", 
+        prompt: 'KETER> ',
+        name: 'keter_engine'
+      });
+
+      mudarAba(idTerminalKeter);
+      app.motorJogo.iniciar(terminalKeter);
+
+    } 
+    else if (comando !== "") {
+      let arquivoEncontrado = null;
+
+      if (sistemaArquivos[comando]) {
+        arquivoEncontrado = comando;
+      } 
+      else if (sistemaArquivos[comando + ".TXT"]) {
+        arquivoEncontrado = comando + ".TXT";
+      } 
+      else if (sistemaArquivos[comando + ".JPG"]) {
+        arquivoEncontrado = comando + ".JPG";
+      } 
+      else if (sistemaArquivos[comando + ".PNG"]) {
+        arquivoEncontrado = comando + ".PNG";
+      }
+
+      if (arquivoEncontrado) {
+
+        if (arquivoEncontrado.endsWith(".TXT")) {
+          app.escrever(term, sistemaArquivos[arquivoEncontrado]);
+        } 
+
+        else if (arquivoEncontrado.endsWith(".JPG") || arquivoEncontrado.endsWith(".PNG")) {
+          term.echo(`Carregando visualização de [${arquivoEncontrado}]...\n`);
+
+          const urlBase = caminhosImagens[arquivoEncontrado] || "arquivos/teste.png";
+          const urlImagem = await testarImagem(urlBase);
+
+          if (!urlImagem) {
+            app.escrever(term, "Não foi possível carregar a imagem principal nem o arquivo de fallback (arquivos/teste.png).");
+            return;
+          }
+
+          const htmlImagem = `
+            <div style="margin: 8px 0; border: 1px dashed #dc143c; padding: 10px; display: inline-block; background: rgba(8,8,8,0.5);">
+                <img 
+                src="${urlImagem}" 
+                alt="${arquivoEncontrado}" 
+                onerror="this.onerror=null; this.src='arquivos/teste.png';" 
+                style="max-width: 300px; height: auto; display: block; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.2);" 
+                />
+                <a href="${urlImagem}" download="${arquivoEncontrado}" style="color: #080808; text-decoration: none; font-weight: bold; font-family: 'Syne Mono', monospace; background: #dc143c; padding: 6px 12px; display: inline-block; transition: filter 0.2s;">
+                [ INICIAR TRANSFERÊNCIA LOCAL ]
+                </a>
+            </div>
+            `;
+
+          term.echo(htmlImagem, { raw: true });
+          term.echo("");
+        }
+      } 
+      else {
+        app.escrever(term, `Comando inválido ou arquivo não encontrado: ${comando}`);
+      }
+    }
+  }, {
+    greetings: "D.DIARY OS v1.0.2\nDigite HELP para listar os comandos.",
+    prompt: 'C:\\> '
+  });
+}

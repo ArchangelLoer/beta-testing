@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acordado.</title>
+
+    <!-- fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--jQuery Terminal -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.2/js/jquery.terminal.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.2/css/jquery.terminal.min.css" rel="stylesheet"/>
+
+    <link rel="icon" href="arquivos/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="scripts/main.js" type="module"></script>
+  </head>
+
+  <body>
+    <div
+      style="
+        font-family: &quot;Nosifer&quot;, sans-serif;
+        opacity: 0;
+        position: absolute;
+        pointer-events: none;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      "
+    >
+      .
+    </div>
+
+    <img id="egg-olho-cam" src="" alt="Olho" class="egg-olho-hidden" />
+    <main class="container">
+      <section class="painel-esquerdo">
+        <input
+          type="radio"
+          name="painel-esquerdo"
+          id="painel-menu"
+          class="toggle-painel"
+          checked
+        />
+        <input
+          type="radio"
+          name="painel-esquerdo"
+          id="abrir-ficha"
+          class="toggle-painel"
+        />
+        <input
+          type="radio"
+          name="painel-esquerdo"
+          id="abrir-inventario"
+          class="toggle-painel"
+        />
+        <input
+          type="radio"
+          name="painel-esquerdo"
+          id="abrir-configuracoes"
+          class="toggle-painel"
+        />
+        <input
+          type="radio"
+          name="painel-esquerdo"
+          id="abrir-jogo"
+          class="toggle-painel"
+        />
+
+        <link rel="preload" as="image" />
+
+        <div class="menu-principal">
+          <div class="grade-botoes">
+            <label for="abrir-inventario" class="botao-menu botao-inventario">
+              <img
+                src="arquivos/IconeInventario.png"
+                alt="Inventário"
+                class="icone-menu"
+              />
+            </label>
+            <label for="abrir-ficha" class="botao-menu botao-ativo">
+              <img
+                src="arquivos/IconeDados.png"
+                alt="Dados"
+                class="icone-menu"
+              />
+            </label>
+            <label for="abrir-configuracoes" class="botao-menu">
+              <img
+                src="arquivos/IconeConfig.png"
+                alt="Configurações"
+                class="icone-menu"
+              />
+            </label>
+            <label for="abrir-jogo" class="botao-menu">
+              <img
+                src="arquivos/IconeBloqueado.png"
+                alt="jogo"
+                class="icone-menu"
+              />
+            </label>
+          </div>
+        </div>
+
+        <div class="painel-ficha">
+          <label for="painel-menu" class="botao-voltar" title="Voltar">←</label>
+
+          <div class="info">
+            <div class="bloco">
+              <h2>_Qual é o seu nome?</h2>
+              <p id="bloco-nome">- ▮▮▮▮▮▮▮▮▮▮</p>
+            </div>
+
+            <div class="bloco">
+              <h2>_Qual é a sua idade?</h2>
+              <p>- Não sei, mas não pareço muito velho, pareço?</p>
+            </div>
+
+            <div class="bloco">
+              <h2>_O que você é?</h2>
+              <p>- Vampiro</p>
+            </div>
+
+            <div class="bloco">
+              <h2 id="egg-vida">_O que te deu vida?</h2>
+
+              <p class="vida-linha"></p>
+              <p class="vida-linha"></p>
+              <p class="vida-linha"></p>
+              <p class="vida-linha"></p>
+              <p class="vida-linha"></p>
+
+              <div class="bloco bloco-falso hidden" id="egg-sonho">
+                <h2>_Quem está sonhando?</h2>
+                <p>- Eu não lembro de ter dormido.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="painel-inventario">
+          <label for="painel-menu" class="botao-voltar" title="Voltar">←</label>
+
+          <div class="inventario-scroll">
+            <div class="inventario-grid" id="inventario-grid"></div>
+          </div>
+        </div>
+
+        <div class="painel-configuracoes">
+          <label for="painel-menu" class="botao-voltar" title="Voltar">←</label>
+
+          <div class="info">
+            <div
+              class="bloco"
+              id="egg-check-container"
+              style="display: none; margin-bottom: 15px"
+            >
+              <label
+                class="egg-nome-appear"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                  font-size: 1.1rem;
+                "
+              >
+                <input
+                  type="checkbox"
+                  checked
+                  style="
+                    width: 18px;
+                    height: 18px;
+                    accent-color: #dc143c;
+                    cursor: pointer;
+                    pointer-events: none;
+                  "
+                />
+                ESQUECER
+              </label>
+            </div>
+            <div class="bloco" style="margin-bottom: 30px">
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                  font-size: 1.1rem;
+                  color: #e0e0e0;
+                "
+              >
+                <input
+                  type="checkbox"
+                  id="mutar-vampiro"
+                  style="
+                    width: 18px;
+                    height: 18px;
+                    accent-color: #dc143c;
+                    cursor: pointer;
+                  "
+                />
+                Silenciar o vampiro
+              </label>
+            </div>
+            <div class="bloco" style="margin-bottom: 30px">
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                  font-size: 1.1rem;
+                  color: #e0e0e0;
+                "
+              >
+                <input
+                  type="checkbox"
+                  id="modo-facil"
+                  style="
+                    width: 18px;
+                    height: 18px;
+                    accent-color: #dc143c;
+                    cursor: pointer;
+                  "
+                />
+                Modo Fácil (Destaca palavras-chave para diálogos)
+              </label>
+            </div>
+
+            <div class="bloco">
+              <h2>_Ajuda</h2>
+              <p>
+                <strong>Como conversar:</strong> clique em
+                <em>"Você quer falar comigo?"</em> e digite no teclado para
+                falar com o vampiro. Escreva apenas a palavra desejada, sem
+                acentos, e ele comentará sobre ela.
+              </p>
+              <p>
+                As mesmas palavras podem gerar respostas diferentes. Assuntos
+                gerais, palavras-chave do site ou até termos ligados às
+                respostas podem provocar reações variadas. Pressione 'Enter'
+                para enviar sua palavra. Se ela não for aceita, tente
+                outro palavra-chave.
+              </p>
+              <p
+                style="
+                  margin-top: 15px;
+                  font-size: 0.9rem;
+                  color: #b0b0b0;
+                  line-height: 1.4;
+                "
+              >
+                Obrigado por interagir com meu personagem. E sim, eu sei que a
+                responsividade ainda pode ficar meio feia em algumas telas.
+              </p>
+              <p
+                style="
+                  margin-top: 18px;
+                  font-size: 0.85rem;
+                  color: #8f8f8f;
+                  line-height: 1.45;
+                "
+              >
+                <strong>Patch note:</strong> novas conversas, adição do modo
+                fácil (em beta, sujeito a problemas), adição de um
+                <em>scary event</em> e a remoção da entidade.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="painel-jogo">
+          <label for="painel-menu" class="botao-voltar" title="Voltar">←</label>
+
+          <div id="barra-abas-terminal" class="barra-abas">
+            <button class="aba-cmd ativa" data-target="terminal-computador">[ D.DIARY OS ]</button>
+          </div>
+
+        <div id="container-terminais" class="container-terminais">
+          <div id="terminal-computador" class="instancia-terminal ativa"></div>
+        </div>
+      </div>
+      </section>
+
+      <div class="coluna-direita">
+        <h2>_Como você se parece?</h2>
+
+        <div class="foto-container">
+          <img
+            id="retrato"
+            src="arquivos/Base.png"
+            alt="Sou eu, um retrato de mim mesmo, eu mesmo, um retrato que fiz de mim mesmo quando estava dormindo, um retrato que fiz de mim mesmo quando estava dormindo e sonhando, um retrato que fiz de mim mesmo quando estava dormindo e sonhando e feliz, um retrato que fiz de mim mesmo quando estava dormindo e sonhando e feliz e triste, um retrato que fiz de mim mesmo quando estava dormindo e sonhando e feliz e triste e sozinho, um retrato que fiz de mim mesmo quando estava dormindo e sonhando e feliz e triste e sozinho e perdido. Sou eu."
+          />
+        </div>
+
+        <div id="fala-trigger" class="fala-trigger" tabindex="0" role="button">
+          Você quer falar comigo?
+        </div>
+
+        <p id="texto-digitado" class="texto-digitado"></p>
+
+        <input
+          id="fala-input"
+          type="text"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+        />
+      </div>
+    </main>
+  </body>
+</html>
