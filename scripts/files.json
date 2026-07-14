@@ -6,17 +6,17 @@
   },
   "DIARY1.TXT": {
     "tipo": "texto",
-    "conteudo": "teste 1.",
+    "conteudo": "[SECRETO, ALTERAR DPS].",
     "requerItem": "simbolo1"
   },
   "DIARY2.TXT": {
     "tipo": "texto",
-    "conteudo": "teste 2",
+    "conteudo": "[SECRETO, ALTERAR DPS]",
     "requerItem": "simbolo2"
   },
   "DIARY3.TXT": {
     "tipo": "texto",
-    "conteudo": "teste 3",
+    "conteudo": "[SECRETO, ALTERAR DPS]",
     "requerItem": "simbolo3"
   },
   "FAVORITE-PLACE.PNG": {

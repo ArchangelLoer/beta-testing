@@ -653,18 +653,29 @@ button.botao-mockup:hover {
 
 .container-terminais {
   position: relative;
-  height: 500px;
+  height: 400px;
   width: 100%;
 }
 
 .instancia-terminal {
-  display: none;
   height: 100%;
   width: 100%;
 }
 
-.instancia-terminal.ativa {
-  display: block; 
+.notificacao-ativa {
+  color: #ff5a5a !important;
+  border-color: rgba(255, 90, 90, 0.7) !important;
+  text-shadow: 0 0 8px rgba(255, 90, 90, 0.6);
+  animation: piscar-notificacao 1.5s infinite;
+}
+
+.botao-menu.notificacao-ativa .icone-menu {
+  filter: drop-shadow(0 0 8px rgba(255, 90, 90, 0.8));
+}
+
+@keyframes piscar-notificacao {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
 /* scary */

@@ -810,6 +810,10 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
 
       targetApp.inventario.sincronizar(itensMapeados);
     }
+    
+    if (targetApp && targetApp.checarArquivosDesbloqueados) {
+      targetApp.checarArquivosDesbloqueados(progresso.inventario);
+    }
   }
 
   function atualizarIndicador() {
@@ -823,6 +827,7 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
 
     const cenario = obterCenarioAtual();
     const nomeExibicao = cenario && cenario.nome ? cenario.nome : estadoAtual;
+    
     term.set_prompt(`KETER [${nomeExibicao}]> `);
   }
 

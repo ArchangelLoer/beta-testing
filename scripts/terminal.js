@@ -3,6 +3,9 @@ export async function initTerminal(app) {
   if (!terminalElement.length) return;
 
   let sistemaArquivos = {};
+  let notificacoes =
+    JSON.parse(localStorage.getItem("keter_arquivos_desbloqueados")) || [];
+  const somNotificacao = new Audio("arquivos/notificacao.mp3");
 
   try {
     const resposta = await fetch("scripts/files.json");
@@ -23,7 +26,7 @@ export async function initTerminal(app) {
 
   function wordWrap(texto, limiteColunas) {
     if (!texto) return "";
-    const linhas = String(texto).split("\\n");
+    const linhas = String(texto).split("\n");
     const resultado = [];
     for (const linha of linhas) {
       const palavras = linha.split(" ");
@@ -44,7 +47,7 @@ export async function initTerminal(app) {
       }
       if (linhaAtual) resultado.push(linhaAtual.trimEnd());
     }
-    return resultado.join("\\n");
+    return resultado.join("\n");
   }
 
   function testarImagem(src) {
@@ -62,6 +65,48 @@ export async function initTerminal(app) {
     });
   }
 
+  app.checarArquivosDesbloqueados = function (inventario) {
+    let novoDesbloqueio = false;
+
+    Object.keys(sistemaArquivos).forEach((arq) => {
+      const dadosArq = sistemaArquivos[arq];
+
+      if (!dadosArq.secreto && dadosArq.requerItem) {
+        if (
+          inventario.includes(dadosArq.requerItem) &&
+          !notificacoes.includes(arq)
+        ) {
+          notificacoes.push(arq);
+          novoDesbloqueio = true;
+
+          const mensagemAviso = `[[b;#ffffff;]*** D.DIARY OS: NOVO(S) ARQUIVO(S) ENCONTRADOS. ***]`;
+
+          if (abaAtiva === "terminal-computador") {
+            mainTerm.echo(mensagemAviso);
+          } else {
+            mensagensPendentesOS.push(mensagemAviso);
+          }
+        }
+      }
+    });
+
+    if (novoDesbloqueio) {
+      localStorage.setItem(
+        "keter_arquivos_desbloqueados",
+        JSON.stringify(notificacoes),
+      );
+
+      somNotificacao
+        .play()
+        .catch((erro) => console.log("Áudio bloqueado pelo navegador:", erro));
+
+      $(".aba-cmd[data-target='terminal-computador']").addClass(
+        "notificacao-ativa",
+      );
+      $("label[for='abrir-jogo']").addClass("notificacao-ativa");
+    }
+  };
+
   app.escrever = async function (term, textoRaw, animar = false) {
     if (!term || !textoRaw) return;
     const maxCols = term.cols() > 5 ? term.cols() - 2 : 60;
@@ -70,7 +115,7 @@ export async function initTerminal(app) {
     texto = texto.map((t) => wordWrap(t, maxCols));
 
     for (let i = 0; i < texto.length; i++) {
-      const linhas = texto[i].split("\\n");
+      const linhas = texto[i].split("\n");
       for (const linha of linhas) {
         if (!animar) {
           term.echo(linha);
@@ -81,44 +126,50 @@ export async function initTerminal(app) {
       }
       if (animar && i < texto.length - 1) await delay(300);
     }
-    term.echo("");
+    term.echo("\u00A0");
   };
 
-  // --- GERENCIADOR DE ABAS EM INSTÂNCIA ÚNICA ---
   let terminalViews = {
     "terminal-computador": null,
-    "terminal-keter": null
+    "terminal-keter": null,
   };
   let abaAtiva = "terminal-computador";
+  let mensagensPendentesOS = [];
 
   function mudarAba(idTerminalAlvo) {
     if (abaAtiva === idTerminalAlvo) return;
 
-    // 1. Salva a tela da aba que está ativa no momento
     terminalViews[abaAtiva] = mainTerm.export_view();
 
-    // 2. Atualiza os botões visuais
     $(".aba-cmd").removeClass("ativa");
     $(`.aba-cmd[data-target="${idTerminalAlvo}"]`).addClass("ativa");
 
-    // 3. Atualiza o estado
     abaAtiva = idTerminalAlvo;
 
-    // 4. Importa a tela da aba destino
     if (terminalViews[idTerminalAlvo]) {
       mainTerm.import_view(terminalViews[idTerminalAlvo]);
     }
 
-    // Mantém o foco no teclado virtual do celular de forma contínua
+    if (idTerminalAlvo === "terminal-computador") {
+      while (mensagensPendentesOS.length > 0) {
+        mainTerm.echo(mensagensPendentesOS.shift());
+      }
+    }
+
     setTimeout(() => mainTerm.focus(), 50);
   }
 
   $("#barra-abas-terminal").on("click", ".aba-cmd", function () {
     const alvo = $(this).data("target");
+
+    if (alvo === "terminal-computador") {
+      $(this).removeClass("notificacao-ativa");
+      $("label[for='abrir-jogo']").removeClass("notificacao-ativa");
+    }
+
     mudarAba(alvo);
   });
 
-  // Inicializa o terminal unificado
   const mainTerm = terminalElement.terminal(
     async function (comandoBruto, term) {
       const comando = comandoBruto.trim().toUpperCase();
@@ -133,19 +184,20 @@ export async function initTerminal(app) {
       if (comando === "HELP" || comando === "AJUDA") {
         app.escrever(
           term,
-          "Comandos disponíveis:\\n  DIR         - Lista os arquivos do diretório atual\\n  TYPE [arq]  - Lê o conteúdo de um arquivo de texto\\n  VIEW [arq]  - Visualiza um arquivo de imagem\\n  [arquivo]   - Executa um arquivo do tipo .exe ou .sys",
+          "Comandos disponíveis:\n  DIR         - Lista os arquivos do diretório atual\n  TYPE [arq]  - Lê o conteúdo de um arquivo de texto\n  VIEW [arq]  - Visualiza um arquivo de imagem\n  [arquivo]   - Executa um arquivo do tipo .exe ou .sys",
         );
       } else if (comando === "DIR") {
-        let textoDir = "Diretório de C:\\\\%#@%?&\\\\SALVOS\\n";
+        let textoDir = "Diretório de C:\\\\%#@%?&\\\\SALVOS\n";
         Object.keys(sistemaArquivos).forEach((arq) => {
           const dadosArq = sistemaArquivos[arq];
 
           if (!dadosArq.secreto) {
             if (
               !dadosArq.requerItem ||
-              inventario.includes(dadosArq.requerItem)
+              inventario.includes(dadosArq.requerItem) ||
+              notificacoes.includes(arq)
             ) {
-              textoDir += `\\n  ${arq}`;
+              textoDir += `\n  ${arq}`;
             }
           }
         });
@@ -162,7 +214,9 @@ export async function initTerminal(app) {
         if (
           !dadosArq ||
           dadosArq.tipo !== "texto" ||
-          (dadosArq.requerItem && !inventario.includes(dadosArq.requerItem))
+          (dadosArq.requerItem &&
+            !inventario.includes(dadosArq.requerItem) &&
+            !notificacoes.includes(arquivo))
         ) {
           app.escrever(
             term,
@@ -183,7 +237,9 @@ export async function initTerminal(app) {
         if (
           !dadosArq ||
           dadosArq.tipo !== "imagem" ||
-          (dadosArq.requerItem && !inventario.includes(dadosArq.requerItem))
+          (dadosArq.requerItem &&
+            !inventario.includes(dadosArq.requerItem) &&
+            !notificacoes.includes(arquivo))
         ) {
           app.escrever(
             term,
@@ -222,7 +278,9 @@ export async function initTerminal(app) {
         if (
           dadosExec &&
           dadosExec.tipo === "executavel" &&
-          (!dadosExec.requerItem || inventario.includes(dadosExec.requerItem))
+          (!dadosExec.requerItem ||
+            inventario.includes(dadosExec.requerItem) ||
+            notificacoes.includes(alvoExec))
         ) {
           if (dadosExec.acao === "abrir_keter") {
             const idTerminalKeter = "terminal-keter";
@@ -233,20 +291,18 @@ export async function initTerminal(app) {
               return;
             }
 
+            term.set_command("");
+
             term.echo("Iniciando KETER.EXE numa nova janela...");
-            
-            // Adiciona a aba visualmente no cabeçalho
+
             $("#barra-abas-terminal").append(
               `<button class="aba-cmd" data-target="${idTerminalKeter}">[ KETER.EXE ]</button>`,
             );
 
-            // Salva o estado atual do D.DIARY OS
             terminalViews["terminal-computador"] = mainTerm.export_view();
 
-            // Limpa o painel físico para o jogo rodar
             mainTerm.clear();
 
-            // Empilha um interpretador exclusivo para o jogo Keter sobre o terminal existente
             mainTerm.push(
               async function (comandoJogo, termJogo) {
                 await app.motorJogo.processarComando(comandoJogo, termJogo);
@@ -254,31 +310,28 @@ export async function initTerminal(app) {
               {
                 prompt: "KETER> ",
                 name: "keter_engine",
-                greetings: ""
-              }
+                greetings: "",
+              },
             );
 
-            // Salva a tela inicial gerada pelo Keter
             terminalViews[idTerminalKeter] = mainTerm.export_view();
 
-            // Muda visualmente a aba ativa para o Keter
             abaAtiva = idTerminalKeter;
             $(".aba-cmd").removeClass("ativa");
             $(`.aba-cmd[data-target="${idTerminalKeter}"]`).addClass("ativa");
 
-            // Inicializa a engine do jogo enviando a instância de terminal unificada
             app.motorJogo.iniciar(mainTerm);
           }
         } else {
           app.escrever(
             term,
-            "Comando ou nome de arquivo inválido.\\nDigite HELP ou AJUDA para listar os comandos.",
+            "Comando ou nome de arquivo inválido.\nDigite HELP ou AJUDA para listar os comandos.",
           );
         }
       }
     },
     {
-      greetings: "D.DIARY OS v1.0.2\\nDigite HELP para listar os comandos.",
+      greetings: "D.DIARY OS v1.0.2\nDigite HELP para listar os comandos.",
       prompt: "C:\\\\> ",
       attributes: {
         autocapitalize: "off",

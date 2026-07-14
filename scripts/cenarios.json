@@ -140,7 +140,7 @@
           "nome": "gavetas",
           "aliases": ["gaveta", "gavetas"],
           "examinar": {
-            "descricao": "Com um rangido, você opens as gavetas e encontra uma [chave] velha e enferrujada no fundo.",
+            "descricao": "Com um rangido, você abre as gavetas e encontra uma [chave] velha e enferrujada no fundo.",
             "descobre": "chaveCabana",
             "repetida": "Você vasculha as gavetas novamente, mas só restam poeira e mofo."
           }
@@ -194,7 +194,7 @@
         "Três símbolos. É tudo de que você precisa.",
         "É bom se apressar, eles já devem ter notado que você sumiu."
       ],
-      "descricaoDetalhada": "Um [Beco], um [Bar] ainda aberto, um [Cemitério], um [Açougue] fechado, uma [Igreja] e uma [Torre do Relógio] é tudo o que há de interessante por aqui.",
+      "descricaoDetalhada": "Um [Beco], um [Bar] ainda aberto, um [Cemitério], um [Açougue] fechado e uma [Igreja] é tudo o que há de interessante por aqui.",
       "descricaoRetorno": "A lua ainda está no topo do céu.",
       "interacoes": {
         "casa": {
@@ -222,7 +222,6 @@
           "nome": "Açougue",
           "aliases": ["acougue", "açougue"],
           "ir": {
-            "resposta": "Você caminha até o açougue...",
             "proximoEstado": "acougue"
           }
         },
@@ -230,7 +229,6 @@
           "nome": "Bar",
           "aliases": ["bar"],
           "ir": {
-            "resposta": "Você caminha até o bar...",
             "proximoEstado": "bar"
           }
         },
@@ -238,7 +236,6 @@
           "nome": "Igreja",
           "aliases": ["igreja"],
           "ir": {
-            "resposta": "Você caminha até a igreja...",
             "proximoEstado": "igrejaEx"
           }
         }
