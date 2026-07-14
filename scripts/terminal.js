@@ -84,26 +84,33 @@ export async function initTerminal(app) {
     term.echo("");
   };
 
+  // --- GERENCIADOR DE ABAS EM INSTÂNCIA ÚNICA ---
+  let terminalViews = {
+    "terminal-computador": null,
+    "terminal-keter": null
+  };
+  let abaAtiva = "terminal-computador";
+
   function mudarAba(idTerminalAlvo) {
-    $(".instancia-terminal").each(function () {
-      const term = $(this).terminal();
-      if (term) {
-        term.focus(false);
-        term.disable();
-      }
-    });
+    if (abaAtiva === idTerminalAlvo) return;
 
+    // 1. Salva a tela da aba que está ativa no momento
+    terminalViews[abaAtiva] = mainTerm.export_view();
+
+    // 2. Atualiza os botões visuais
     $(".aba-cmd").removeClass("ativa");
-    $(".instancia-terminal").removeClass("ativa");
-
     $(`.aba-cmd[data-target="${idTerminalAlvo}"]`).addClass("ativa");
-    $(`#${idTerminalAlvo}`).addClass("ativa");
 
-    const term = $(`#${idTerminalAlvo}`).terminal();
-    if (term) {
-      term.enable();
-      setTimeout(() => term.focus(true), 150);
+    // 3. Atualiza o estado
+    abaAtiva = idTerminalAlvo;
+
+    // 4. Importa a tela da aba destino
+    if (terminalViews[idTerminalAlvo]) {
+      mainTerm.import_view(terminalViews[idTerminalAlvo]);
     }
+
+    // Mantém o foco no teclado virtual do celular de forma contínua
+    setTimeout(() => mainTerm.focus(), 50);
   }
 
   $("#barra-abas-terminal").on("click", ".aba-cmd", function () {
@@ -111,7 +118,8 @@ export async function initTerminal(app) {
     mudarAba(alvo);
   });
 
-  terminalElement.terminal(
+  // Inicializa o terminal unificado
+  const mainTerm = terminalElement.terminal(
     async function (comandoBruto, term) {
       const comando = comandoBruto.trim().toUpperCase();
 
@@ -133,7 +141,6 @@ export async function initTerminal(app) {
           const dadosArq = sistemaArquivos[arq];
 
           if (!dadosArq.secreto) {
-            // Verifica se o arquivo tem requisito e, se tiver, se o jogador possui o item
             if (
               !dadosArq.requerItem ||
               inventario.includes(dadosArq.requerItem)
@@ -220,41 +227,47 @@ export async function initTerminal(app) {
           if (dadosExec.acao === "abrir_keter") {
             const idTerminalKeter = "terminal-keter";
 
-            if ($(`#${idTerminalKeter}`).length) {
+            if (terminalViews[idTerminalKeter] !== null) {
               term.echo("O KETER.EXE já está em execução em outra janela.");
               mudarAba(idTerminalKeter);
               return;
             }
 
             term.echo("Iniciando KETER.EXE numa nova janela...");
+            
+            // Adiciona a aba visualmente no cabeçalho
             $("#barra-abas-terminal").append(
               `<button class="aba-cmd" data-target="${idTerminalKeter}">[ KETER.EXE ]</button>`,
             );
-            $("#container-terminais").append(
-              `<div id="${idTerminalKeter}" class="instancia-terminal"></div>`,
-            );
 
-            const terminalKeter = $(`#${idTerminalKeter}`).terminal(
+            // Salva o estado atual do D.DIARY OS
+            terminalViews["terminal-computador"] = mainTerm.export_view();
+
+            // Limpa o painel físico para o jogo rodar
+            mainTerm.clear();
+
+            // Empilha um interpretador exclusivo para o jogo Keter sobre o terminal existente
+            mainTerm.push(
               async function (comandoJogo, termJogo) {
                 await app.motorJogo.processarComando(comandoJogo, termJogo);
               },
               {
-                greetings: "",
                 prompt: "KETER> ",
                 name: "keter_engine",
-                attributes: {
-                  autocapitalize: "off",
-                  autocorrect: "off",
-                  autocomplete: "off",
-                  spellcheck: "false",
-                  inputmode: "text",
-                  dir: "ltr",
-                },
-              },
+                greetings: ""
+              }
             );
 
-            mudarAba(idTerminalKeter);
-            app.motorJogo.iniciar(terminalKeter);
+            // Salva a tela inicial gerada pelo Keter
+            terminalViews[idTerminalKeter] = mainTerm.export_view();
+
+            // Muda visualmente a aba ativa para o Keter
+            abaAtiva = idTerminalKeter;
+            $(".aba-cmd").removeClass("ativa");
+            $(`.aba-cmd[data-target="${idTerminalKeter}"]`).addClass("ativa");
+
+            // Inicializa a engine do jogo enviando a instância de terminal unificada
+            app.motorJogo.iniciar(mainTerm);
           }
         } else {
           app.escrever(

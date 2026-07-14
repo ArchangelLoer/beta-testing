@@ -655,26 +655,16 @@ button.botao-mockup:hover {
   position: relative;
   height: 500px;
   width: 100%;
-  overflow: hidden; 
 }
 
 .instancia-terminal {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: none;
   height: 100%;
   width: 100%;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1;
 }
 
 .instancia-terminal.ativa {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 5;
+  display: block; 
 }
 
 /* scary */
