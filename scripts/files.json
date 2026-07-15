@@ -4,6 +4,11 @@
     "conteudo": "Bem-vindo ao D.DIARY OS. Sistema operando normalmente.",
     "secreto": false
   },
+  "KETER-ITEM-TUTORIAL.TXT": {
+    "tipo": "texto",
+    "conteudo": "=== KETER: SISTEMA DE ITENS ===\n\nOs itens coletados durante a simulação KETER são armazenados automaticamente no inventário ao utilizar o comando [PEGAR]. Quando um item cumprir sua função ou não for mais útil para o progresso do cenário, ele será removido do sistema de forma automática.\n\nIMPORTANTE: Apenas os [itens] obtidos dentro da própria simulação podem ser utilizados. KETER.EXE não reconhece e desconsidera qualquer recurso ou modificação externa fora do escopo da simulação.",
+    "requerItem": "chaveCabana"
+  },
   "DIARY1.TXT": {
     "tipo": "texto",
     "conteudo": "[SECRETO, ALTERAR DPS].",

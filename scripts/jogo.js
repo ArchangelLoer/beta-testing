@@ -433,32 +433,65 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
     const term = app.motorJogo.termAtivo;
     if (!term || !textoRaw) return;
 
-    const destacarPalavrasChaves = (texto) => {
-      if (typeof texto === "string") {
-        return texto.replace(
-          /(?<!\[)\[([^\[\]]+)\](?!\])/g,
-          (match, conteudo) => {
-            const textoSemEspacos = conteudo.replace(/ /g, "\xA0");
-
-            return `[[b;#c44b4b;]&#91;${textoSemEspacos}&#93;]`;
-          },
-        );
-      }
-      return texto;
+    const protegerEspacos = (texto) => {
+      return String(texto).replace(
+        /(?<!\[)\[([^\[\]]+)\](?!\])/g,
+        (match, conteudo) => `[${conteudo.replace(/ /g, "\xA0")}]`
+      );
     };
 
-    let textoFormatado;
-    if (Array.isArray(textoRaw)) {
-      textoFormatado = textoRaw.map(destacarPalavrasChaves);
-    } else {
-      textoFormatado = destacarPalavrasChaves(textoRaw);
-    }
+    const aplicarCores = (texto) => {
+      return String(texto).replace(
+        /(?<!\[)\[([^\[\]]+)\](?!\])/g,
+        (match, conteudo) => `[[b;#c44b4b;]&#91;${conteudo}&#93;]`
+      );
+    };
 
-    if (app.escrever) {
-      await app.escrever(term, textoFormatado);
-    } else {
-      term.echo(textoFormatado);
+    const aplicarWordWrap = (texto, limiteColunas) => {
+      if (!texto) return "";
+      const linhas = String(texto).split("\n");
+      const resultado = [];
+      for (const linha of linhas) {
+        const palavras = linha.split(" ");
+        let linhaAtual = "";
+        for (const palavra of palavras) {
+          if (palavra.length > limiteColunas) {
+            if (linhaAtual) {
+              resultado.push(linhaAtual.trimEnd());
+              linhaAtual = "";
+            }
+            resultado.push(palavra);
+          } else if (linhaAtual.length + palavra.length + 1 > limiteColunas) {
+            resultado.push(linhaAtual.trimEnd());
+            linhaAtual = palavra + " ";
+          } else {
+            linhaAtual += palavra + " ";
+          }
+        }
+        if (linhaAtual) resultado.push(linhaAtual.trimEnd());
+      }
+      return resultado.join("\n");
+    };
+
+    const maxCols = term.cols() > 5 ? term.cols() - 2 : 60;
+    let textos = Array.isArray(textoRaw) ? textoRaw : [String(textoRaw)];
+
+    for (let i = 0; i < textos.length; i++) {
+      const textoProtegido = protegerEspacos(textos[i]);
+      
+      const linhasForcadas = textoProtegido.split("\\n");
+
+      for (const linha of linhasForcadas) {
+        const textoEnvelopado = aplicarWordWrap(linha, maxCols);
+        const linhasProntas = textoEnvelopado.split("\n");
+
+        for (const linhaFinal of linhasProntas) {
+          term.echo(aplicarCores(linhaFinal));
+        }
+      }
     }
+    
+    term.echo("\u00A0");
   }
 
   async function rodarInicializacao() {
