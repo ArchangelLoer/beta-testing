@@ -273,6 +273,9 @@
           "aliases": ["cartazes", "cartaz", "cartazes de desaparecido"],
           "examinar": {
             "descricao": "São vários cartazes de desaparecido de multiplas pessoas... Huh. Uma de suas vitimas de meses atrás está aqui."
+          },
+          "pegar": {
+            "resposta": "Não há necessidade nenhuma de pegar esses cartazes."
           }
         },
         "chave de fenda": {
@@ -417,6 +420,13 @@
             ]
           },
           "usar": {
+            "aliases": [
+              "carne crua",
+              "carne lobisomem",
+              "carne crua lobisomem",
+              "carne no lobisomem",
+              "carne crua no lobisomem"
+            ],
             "itemId": "carne",
             "removeItem": "carne",
             "resposta": [
@@ -1243,6 +1253,9 @@
         "rosário": {
           "nome": "rosário",
           "aliases": ["rosario", "rosários", "rosário", "rosario"],
+          "examinar": {
+            "descricao": "São rosários comuns pendurados na parede em fileira, chega a ser irônico vê-las na mesma sala em que ocorre um ritual demoniaco."
+          },
           "pegar": {
             "itemId": "rosario",
             "resposta": "Você pega um dos rosários... Ew."

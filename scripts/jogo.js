@@ -1,6 +1,4 @@
 export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
-  let debugMode = true;
-
   let cenarios = {};
   let dicionario = {};
   let erros = {};
@@ -52,21 +50,21 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
   }
 
   app.motorJogo = {
-  termAtivo: null,
+    termAtivo: null,
 
-  iniciar: async function (term) {
-    this.termAtivo = term;
-    await rodarInicializacao();
-  },
+    iniciar: async function (term) {
+      this.termAtivo = term;
+      await rodarInicializacao();
+    },
 
-  processarComando: async function (comandoBruto, term) {
-    this.termAtivo = term;
-    await processarComandoInterno(comandoBruto);
-  }
-};
+    processarComando: async function (comandoBruto, term) {
+      this.termAtivo = term;
+      await processarComandoInterno(comandoBruto);
+    },
+  };
 
   let erroCritico = null;
-  
+
   try {
     const resposta = await fetch(caminhoJson);
     const dados = await resposta.json();
@@ -93,7 +91,8 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
     }
   } catch (erro) {
     console.error(`Erro ao carregar o arquivo ${caminhoJson}:`, erro);
-    erroCritico = "Erro crítico: Falha ao carregar o banco de dados do cenário.";
+    erroCritico =
+      "Erro crítico: Falha ao carregar o banco de dados do cenário.";
   }
 
   let foiInicializado = false;
@@ -430,40 +429,54 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
     return true;
   }
 
-  async function imprimirResposta(textoRaw) { 
+  async function imprimirResposta(textoRaw) {
     const term = app.motorJogo.termAtivo;
     if (!term || !textoRaw) return;
-    
-    if (app.escrever) {
-        await app.escrever(term, textoRaw, !debugMode);
+
+    const destacarPalavrasChaves = (texto) => {
+      if (typeof texto === "string") {
+        return texto.replace(
+          /(?<!\[)\[([^\[\]]+)\](?!\])/g,
+          (match, conteudo) => {
+            const textoSemEspacos = conteudo.replace(/ /g, "\xA0");
+
+            return `[[b;#c44b4b;]&#91;${textoSemEspacos}&#93;]`;
+          },
+        );
+      }
+      return texto;
+    };
+
+    let textoFormatado;
+    if (Array.isArray(textoRaw)) {
+      textoFormatado = textoRaw.map(destacarPalavrasChaves);
     } else {
-        term.echo(textoRaw);
+      textoFormatado = destacarPalavrasChaves(textoRaw);
+    }
+
+    if (app.escrever) {
+      await app.escrever(term, textoFormatado);
+    } else {
+      term.echo(textoFormatado);
     }
   }
 
   async function rodarInicializacao() {
     if (foiInicializado) return;
     const term = app.motorJogo.termAtivo;
-    
+
     atualizarIndicador();
     foiInicializado = true;
-    term.pause(); 
-    
+    term.pause();
+
     if (erroCritico) {
       term.echo(erroCritico);
       term.resume();
       return;
     }
 
-    for (const linha of textosIniciais) {
-      if (debugMode) {
-        term.echo(linha);
-      } else {
-        term.echo(linha, { typing: true, delay: 15 });
-        await delay(400);
-      }
-    }
-    
+    await imprimirResposta(textosIniciais);
+
     term.resume();
     term.focus();
     sincronizarInventarioUI();
@@ -696,7 +709,6 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
 
     if (interacaoCorrespondente.proximoEstado) {
       estadoAtual = interacaoCorrespondente.proximoEstado;
-      if (!debugMode) await delay(800);
       await responderDescricaoCenario();
     }
   }
@@ -738,7 +750,6 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
 
     if (acao.proximoEstado) {
       estadoAtual = acao.proximoEstado;
-      if (!debugMode) await delay(800);
       await responderDescricaoCenario();
     }
   }
@@ -791,7 +802,6 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
 
     estadoAtual = proximoEstado;
 
-    if (!debugMode) await delay(800);
     await responderDescricaoCenario();
   }
 
@@ -810,7 +820,7 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
 
       targetApp.inventario.sincronizar(itensMapeados);
     }
-    
+
     if (targetApp && targetApp.checarArquivosDesbloqueados) {
       targetApp.checarArquivosDesbloqueados(progresso.inventario);
     }
@@ -827,7 +837,7 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
 
     const cenario = obterCenarioAtual();
     const nomeExibicao = cenario && cenario.nome ? cenario.nome : estadoAtual;
-    
+
     term.set_prompt(`KETER [${nomeExibicao}]> `);
   }
 
@@ -1336,17 +1346,6 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
       }
     }
 
-    if (comandoNormalizado === "debug") {
-      debugMode = !debugMode;
-      const term = app.motorJogo.termAtivo;
-      const cor = debugMode ? "#00ff00" : "#ffcc00"; 
-      const status = debugMode ? "DESATIVADA" : "ATIVADA";
-      if (term) {
-        term.echo(`[[b;${cor};][MODO DEBUG: Animação de texto ${status}]]`);
-      }
-      return;
-    }
-    
     if (comandoNormalizado.startsWith("debug puzzleagulha ")) {
       const partes = comandoNormalizado.split(" ");
       const valor = partes[2];
@@ -1406,10 +1405,9 @@ export async function initJogo(app, caminhoJson = "scripts/cenarios.json") {
       ) {
         estadoAtual = "cabana";
         atualizarIndicador();
-        
+
         await imprimirResposta(textosSistema.carregandoCenario);
 
-        if (!debugMode) await delay(500);
         await responderDescricaoCenario();
       } else {
         await imprimirResposta("Comando não reconhecido.");

@@ -712,6 +712,7 @@ body.scary-event-active .container {
   align-items: center;
 }
 
+
 /* responsividade geral */
 @media (max-width: 900px) {
   .container {

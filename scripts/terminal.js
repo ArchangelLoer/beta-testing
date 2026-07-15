@@ -107,7 +107,24 @@ export async function initTerminal(app) {
     }
   };
 
-  app.escrever = async function (term, textoRaw, animar = false) {
+  function escapeHtml(texto) {
+    return String(texto)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function destacarPalavrasChave(texto) {
+    const htmlSeguro = escapeHtml(texto);
+    return htmlSeguro.replace(
+      /\[([^\]\n]+)\]/g,
+      '<span style="color:#ff4d4d; font-weight:700;">[$1]</span>',
+    );
+  }
+
+  app.escrever = async function (term, textoRaw) {
     if (!term || !textoRaw) return;
     const maxCols = term.cols() > 5 ? term.cols() - 2 : 60;
     let texto = textoRaw;
@@ -115,18 +132,12 @@ export async function initTerminal(app) {
     texto = texto.map((t) => wordWrap(t, maxCols));
 
     for (let i = 0; i < texto.length; i++) {
-      const linhas = texto[i].split("\n");
+      const linhas = texto[i].split("\\n");
       for (const linha of linhas) {
-        if (!animar) {
-          term.echo(linha);
-        } else {
-          term.echo(linha, { typing: true, delay: 15 });
-          await delay(linha.length * 15 + 200);
-        }
+        term.echo(destacarPalavrasChave(linha), { raw: true });
       }
-      if (animar && i < texto.length - 1) await delay(300);
     }
-    term.echo("\u00A0");
+    term.echo("\\u00A0");
   };
 
   let terminalViews = {
@@ -331,7 +342,7 @@ export async function initTerminal(app) {
       }
     },
     {
-      greetings: "D.DIARY OS v1.0.2\nDigite HELP para listar os comandos.",
+      greetings: "D.DIARY OS v1.0.2\nDigite HELP para listar os comandos.\nDEV NOTE: terminal é meio quebrado em celulares e etc, desculpa, só vou arrumar isso dps",
       prompt: "C:\\\\> ",
       attributes: {
         autocapitalize: "off",
@@ -344,3 +355,4 @@ export async function initTerminal(app) {
     },
   );
 }
+

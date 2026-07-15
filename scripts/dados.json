@@ -303,14 +303,14 @@
     {
       "palavras": ["caderno"],
       "resposta": {
-        "texto": "É um caderno cheio de instruções para algum tipo de ritual, há instruções para onde cada tipo de agulha deve ser inserido, se você me especificar qual das agulhas você quer instruções, eu posso te dizer o que está escrito aqui.",
+        "texto": "É um caderno cheio de instruções para um ritual bizarro, há uma lista de regras para três tipos de agulhas diferentes e onde elas devem ser inseridas corretamente. Se quiser que eu leia as anotações, é só mencionar novamente esse caderno seguido do tipo da agulha do seu desejo.",
         "expressao": "comum"
       }
     },
     {
       "palavras": ["certidao", "certidao de obito", "obito"],
       "resposta": {
-        "texto": "É uma certificado de óbito meio antigo, o nome do falecido é 'Danilo Batista', viveu até os 86, era viúvo, morreu em sua própria casa devido a um infarto, foi pronunciado morto quando os médicos chegaram, deixou dois filhos adotivos para trás, que pena.",
+        "texto": "É uma certidão de óbito meio antiga. O nome do falecido é 'Danilo Batista', um viúvo que viveu até os 86 anos. Parece que ele sofreu um infarto e morreu em sua própria casa, sendo pronunciado morto assim que os médicos chegaram. Acabou deixando dois filhos adotivos para trás. Que pena. ",
         "expressao": "comum"
       }
     },
